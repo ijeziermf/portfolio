@@ -103,8 +103,8 @@
       "releases_url": "https://api.github.com/repos/ijeziermf/portfolio/releases{/id}",
       "deployments_url": "https://api.github.com/repos/ijeziermf/portfolio/deployments",
       "created_at": "2026-04-26T20:46:05Z",
-      "updated_at": "2026-04-26T21:31:17Z",
-      "pushed_at": "2026-04-26T21:31:14Z",
+      "updated_at": "2026-04-26T22:06:39Z",
+      "pushed_at": "2026-04-26T22:06:35Z",
       "git_url": "git://github.com/ijeziermf/portfolio.git",
       "ssh_url": "git@github.com:ijeziermf/portfolio.git",
       "clone_url": "https://github.com/ijeziermf/portfolio.git",
@@ -136,7 +136,8 @@
       "forks": 0,
       "open_issues": 0,
       "watchers": 0,
-      "default_branch": "main"
+      "default_branch": "main",
+      "readme": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).\n\n## Getting Started\n\nFirst, run the development server:\n\n```bash\nnpm run dev\n# or\nyarn dev\n# or\npnpm dev\n# or\nbun dev\n```\n\nOpen [http://localhost:3000](http://localhost:3000) with your browser to see the result.\n\nYou can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.\n\nThis project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.\n\n## Learn More\n\nTo learn more about Next.js, take a look at the following resources:\n\n- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.\n- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.\n\nYou can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!\n\n## Deploy on Vercel\n\nThe easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.\n\nCheck out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.\n"
     },
     {
       "id": 1221899796,
@@ -239,7 +240,8 @@
       "forks": 0,
       "open_issues": 0,
       "watchers": 0,
-      "default_branch": "main"
+      "default_branch": "main",
+      "readme": "# AutoPartner — Autonomous AI Agent\n\n> **A fully local, cross-platform AI agent that thinks, plans, browses, controls your computer, and gets smarter with every task — no API keys required.**\n\n---\n\n## What it does\n\n| Capability | Details |\n|---|---|\n| **Smart model routing** | Picks the right model per task: fast for simple, DeepSeek R1 for deep reasoning |\n| **Navigate any UI** | Screen capture → Vision → mouse/keyboard control (macOS + Windows) |\n| **Browse & research** | Playwright browser — search, scrape, fill forms, download files |\n| **CAPTCHA resilience** | Auto-falls back Google → DuckDuckGo → Bing; soft-continues on page CAPTCHAs |\n| **Files & documents** | Read/write/copy/move, Markdown creation, PDF generation, ZIP |\n| **Email, Slack, SMS** | Gmail API, Slack SDK, Twilio — all approval-gated before sending |\n| **Self-improvement** | Proposes, writes, tests, and registers new tools at runtime |\n| **Learns from every task** | Extracts facts, user preferences, and reusable skill patterns into SQLite |\n| **Sub-agents** | Spawns parallel child orchestrators for complex multi-part goals |\n| **Fully local** | All models run through Ollama — offline capable, nothing leaves your machine |\n\n---\n\n## Quick Start (macOS)\n\n```bash\n# 1. Clone & set up\ngit clone https://github.com/you/UgoAI && cd UgoAI\n./scripts/install_mac.sh\n\n# 2. Pull the AI models (one time)\nollama pull gemma3:4b    # fast planner — 3.3 GB\nollama pull llava        # vision / navigation — 4.7 GB\nollama pull deepseek-r1:7b  # deep reasoning — 4.7 GB\n\n# 3. Configure\ncp .env.example .env\n# All defaults work out of the box — edit only what you need\n\n# 4. Run\npython -m ui.cli run \"Research the top 5 no-code tools and create a comparison doc\"\n```\n\n## Quick Start (Windows)\n\n```powershell\n.\\scripts\\install_windows.ps1\ncopy .env.example .env\npython -m ui.cli run \"Organize my Downloads folder by file type\"\n```\n\n---\n\n## Smart Model Routing\n\nThe agent automatically picks the best local model for every task — no "
     },
     {
       "id": 1167163968,
@@ -342,7 +344,8 @@
       "forks": 0,
       "open_issues": 0,
       "watchers": 0,
-      "default_branch": "main"
+      "default_branch": "main",
+      "readme": "# **AtlasPay Linux Hardening Lab**\n\n\n## **Video Demonstration**\n\n(Soon: Video walkthrough of the full hardening process)\n\n## **Overview**\n\nThis project documents the complete hardening of an Ubuntu Linux virtual machine deployed in Microsoft Azure for the simulated FinTech payment processor AtlasPay. The objective was to strengthen the security posture of a cloud‑hosted Linux system by implementing foundational controls aligned with NIST SP 800‑53 Rev. 5.\n\nRather than focusing solely on command execution, this work emphasizes control intent, operational relevance, and security governance. Each configuration step is tied to a specific security objective, demonstrating how technical hardening supports organizational risk reduction and compliance expectations.\n\nThis lab represents the type of baseline system hardening you would see in regulated industries such as FinTech, financial services, and cloud‑forward organizations.\n\n## **Technologies & Tools Used**\n\n- Microsoft Azure (VM deployment, access control, network configuration)\n- Ubuntu Server 22.04 LTS\n- OpenSSH (secure remote access)\n- UFW (host‑based firewall)\n- auditd (audit logging)\n- NIST SP 800‑53 Rev. 5 (control alignment)\n- Linux system administration utilities (nano, visudo, systemctl, useradd, etc.)\n\n## **Deliverable Features**\n\n- Hardened Linux VM aligned with NIST 800‑53\n- Secure SSH configuration (root login disabled, password auth controlled)\n- Enforced password aging and authentication policies\n- Least‑privilege sudo configuration for role‑based access\n- Host‑based firewall restricting inbound traffic\n- Audit logging for privileged file changes\n- Full command‑level documentation with screenshots\n- Governance‑aligned narrative explaining the purpose of each control\n\n## **Notes for Reviewers**\n\nThis lab is intentionally written in clear, business‑focused language while still demonstrating technical depth. Each configuration step includes:\n\n- The security rationale\n- The NIST control mapping\n- The operat"
     },
     {
       "id": 1146174099,
@@ -445,7 +448,8 @@
       "forks": 0,
       "open_issues": 0,
       "watchers": 0,
-      "default_branch": "main"
+      "default_branch": "main",
+      "readme": "# NIST SP 800-53 Rev. 5 Risk Assessment (FinTech Case Study)\n**Overview:**\n\nThis project documents a full end-to-end risk assessment performed for a simulated FinTech payment processing organization (AtlasPay). The goal was to evaluate information security and operational risks in a way that supports executive decision-making, audit readiness, and long-term risk governance, rather than focusing purely on technical controls.\n\n**Technologies & Tools Used:**\n\n- Microsoft Excel (risk register, scoring model, heat map, tracking)\n- NIST SP 800-53 Rev. 5\n- NIST Cybersecurity Framework (CSF)\n- Quantitative risk scoring model (Impact × Likelihood)\n\n**Deliverable Features:**\n\n- Structured risk assessment worksheet\n- Quantitative inherent and residual risk scoring\n- Risk register with ownership and timelines\n- Heat map visualization for executive review\n- Risk treatment and tracking table\n- Executive summary and impact statements\n\n**Notes for Reviewers:**\n\nPlain English was intentionally used when documenting existing controls and risks to ensure clarity for non-technical stakeholders. Formal framework language and control alignment were applied during gap analysis and treatment planning to maintain audit defensibility while keeping executive communication accessible.\n\n**Process (Start to Finish):**\n\nThe project began by defining assessment scope, objectives, and applicable frameworks to ensure alignment with SOC 2 readiness expectations. Risks were identified using a threat vulnerability impact model and documented in plain business language before being mapped to NIST SP 800-53 Rev. 5 control families. A quantitative scoring model was applied to calculate inherent and residual risk, allowing risks to be prioritized consistently. Findings were translated into a structured risk register, heat map, and treatment plan with defined ownership and timelines. The final step focused on executive reporting, emphasizing impact, decision support, and financial relevance rather than tech"
     },
     {
       "id": 1146149012,
@@ -548,7 +552,8 @@
       "forks": 0,
       "open_issues": 0,
       "watchers": 0,
-      "default_branch": "main"
+      "default_branch": "main",
+      "readme": "## Hi, I'm glad you're here!\n\n**Who I Am:**\n\nI’m Ifeanyi, a Governance, Risk, and Compliance (GRC) focused professional with a business management background. My approach centers on translating security and operational risk into clear, defensible business decisions that leadership can act on.\n\n**What I’m Working On:**\n\nI’m currently building cyber risk and GRC case studies that focus on practical risk assessments, gap analysis, and control mapping. These projects are designed to mirror real-world organizational scenarios and demonstrate how risk findings inform governance and decision-making.\n\n**Tools, Frameworks, and Certifications:**\n\nMy work is grounded in NIST CSF/RMF concepts and ISO 27001–aligned principles, with hands-on use of risk registers, control testing, gap analysis, and risk scoring methodologies to support clear decision-making. I hold the CompTIA Security+, Microsoft SC-900, and Lean Six Sigma Yellow Belt certifications and primarily use Microsoft Excel and documentation-driven workflows to support analysis and reporting.\n\n**Facts About Me:**\n\nI’m a former NCAA Division I and Division II football player, which shaped how I approach work today. I thrive in high-pressure, high-accountability environments and bring an athlete’s mindset to GRC; preparation, discipline, and consistent execution. That background naturally aligns with risk ownership, governance, and operating within defined controls.\n\n**How to Reach Me:**\n\nYou can find me on LinkedIn at https://www.linkedin.com/in/ifeanyi-ijezie. Email is available upon request.\n"
     },
     {
       "id": 1171022318,
@@ -651,7 +656,8 @@
       "forks": 0,
       "open_issues": 0,
       "watchers": 0,
-      "default_branch": "main"
+      "default_branch": "main",
+      "readme": "# Microsoft Defender for Cloud (CSPM) & Secure Score\n\n## Overview\nThis lab focuses on onboarding Azure resources into Microsoft Defender for Cloud, enabling Cloud Security Posture Management (CSPM), analyzing Secure Score, and implementing remediations across compute, networking, identity, and data protection.\n\nDuring this lab, I discovered that CSPM must be enabled **at the tenant level**, not just the subscription level for full risk detection and Secure Score accuracy. This insight significantly improved the quality of my results.\n\n---\n\n# 1. Environment Setup\n\n## 1.1 Enable Defender for Cloud\nEnabled Defender for Cloud at the subscription level.\n\n**Screenshot:**  \n<img width=\"1512\" height=\"1084\" alt=\"Screenshot 2026-02-26 at 1 08 34 AM\" src=\"https://github.com/user-attachments/assets/e0d61dcc-5486-43ef-92be-8347a70e1bd4\" />\n\n---\n\n## 1.2 Enable CSPM (Tenant-Level Requirement)\nInitially, I only enabled CSPM at the subscription level, which caused:\n- Missing risk detections  \n- Incomplete Secure Score  \n- No Identity or Data Protection findings  \n\nAfter enabling CSPM at the **tenant level**, Defender began surfacing:\n- 3 Low  \n- 4 Medium  \n- 3 High severity recommendations  \n\n**Screenshot:**  \n<img width=\"1402\" height=\"1079\" alt=\"Screenshot 2026-02-27 at 11 51 29 AM\" src=\"https://github.com/user-attachments/assets/b6de68b1-4748-4fe8-bc74-e92ca6345a85\" />\n\n---\n\n## 1.3 Connect Log Analytics Workspace\nConnected my Log Analytics workspace for advanced analytics and compliance mapping.\n\n**Screenshot:**  \n<img width=\"1784\" height=\"896\" alt=\"image\" src=\"https://github.com/user-attachments/assets/c369decc-4ec3-4560-86ef-02512183bc39\" />\n\n---\n\n# 2. Secure Score Analysis\n\n## 2.1 Initial Secure Score\nSecure Score initially showed **initializing**, then updated to **25%**, with **6/32 recommendations active**.\n\n**Screenshot:**  \n<img width=\"1358\" height=\"1037\" alt=\"Screenshot 2026-02-27 at 11 58 57 AM\" src=\"https://github.com/user-attachments/assets/cbfc41e2-8a3f-4fb5-a42a-2966"
     },
     {
       "id": 1170796243,
@@ -754,7 +760,8 @@
       "forks": 0,
       "open_issues": 0,
       "watchers": 0,
-      "default_branch": "main"
+      "default_branch": "main",
+      "readme": "# Azure Identity Governance, Access Control, and Conditional Access\n\n## Overview\nThis lab demonstrates how I designed and implemented identity governance controls in Microsoft Entra ID and Azure. The goal was to enforce least privilege, protect privileged roles, and validate identity-based access across multiple Azure resources.\n\nThis lab builds on my existing Azure environment and introduces:\n- Role-Based Access Control (RBAC)\n- Conditional Access\n- Privileged Identity Management (PIM)\n- Access Reviews\n- Identity Protection\n- Audit & Sign-in log analysis\n\n---\n\n# 1. Environment Architecture\n\n### Identity Governance Architecture Diagram\n<img width=\"1536\" height=\"1024\" alt=\"Identity Governance Architecture\" src=\"https://github.com/user-attachments/assets/3f01bbfb-cdba-4b9f-8af3-3be732a23f78\" />\n\n---\n\n# 2. Identity Objects\n\n## 2.1 Create Least-Privilege User\nCreated a standard user with no directory roles.\n\n**Screenshot:**  \n<img width=\"482\" height=\"181\" alt=\"Screenshot 2026-02-27 at 11 31 44 PM\" src=\"https://github.com/user-attachments/assets/58513aac-dd82-46b5-b677-ddba1856e584\" />\n\n\n---\n\n## 2.2 Create Security Group\nCreated a security group to manage RBAC assignments at scale.\n\n**Screenshot:**  \n<img width=\"1458\" height=\"1081\" alt=\"Screenshot 2026-03-03 at 1 22 22 AM\" src=\"https://github.com/user-attachments/assets/bf2b3ce8-30e5-480a-bbc7-ca94c95910e7\" />\n\n---\n\n# 3. RBAC Assignments\n\n## 3.1 Resource Group-Level RBAC (Contributor)\nAssigned **Contributor** to the operator group at the RG scope.\n\n**Screenshot:** \n<img width=\"1404\" height=\"1092\" alt=\"Screenshot 2026-02-27 at 11 34 17 PM\" src=\"https://github.com/user-attachments/assets/afc9f9f3-01c0-48f0-ba9b-dd84a06ea128\" />\n\n---\n\n## 3.3 Key Vault RBAC (Secrets User)\nAssigned **Key Vault Secrets User** to LabUser1.\n\n**Screenshot:**  \n<img width=\"1404\" height=\"1092\" alt=\"Screenshot 2026-02-27 at 11 35 51 PM\" src=\"https://github.com/user-attachments/assets/9d404126-8038-4c0b-906b-0d61c6eee7f6\" />\n\n---\n\n## 3.4 Storage Acco"
     },
     {
       "id": 1154823130,
@@ -878,7 +885,8 @@
       "forks": 0,
       "open_issues": 1,
       "watchers": 0,
-      "default_branch": "main"
+      "default_branch": "main",
+      "readme": "# AtlasPay Business Continuity Plan & Organizational Risk Profile\n**Overview**\n\nThis project documents a complete Business Continuity Plan and organizational Risk Profile for a simulated FinTech payment processor AtlasPay. The objective was to evaluate operational resilience, identify critical business functions, define recovery priorities, and establish a governance‑aligned continuity strategy that supports executive decision‑making and long‑term organizational stability. Rather than focusing solely on technical recovery, this work emphasizes business impact, process dependencies, and risk‑informed continuity planning.\n\n**Technologies & Tools Used**\n\n- Microsoft Word (BCP documentation, process analysis, impact statements)\n- Microsoft Excel (risk profile scoring, criticality matrix, dependency mapping)\n- NIST SP 800‑34 Rev. 1 (Contingency Planning Guide)\n- NIST SP 800‑53 Rev. 5 (control alignment for continuity & resilience)\n- Business Impact Analysis (BIA) methodology\n- Recovery Time Objective (RTO) & Recovery Point Objective (RPO) modeling\n\n**Deliverable Features**\n\n- Full Business Continuity Plan aligned with NIST guidance\n- Organizational Risk Profile summarizing key operational and security risks\n- Business Impact Analysis with critical process identification\n- RTO/RPO definitions for essential functions\n- Dependency mapping across systems, vendors, and personnel\n- Continuity strategies and recovery procedures\n- Executive‑ready summary for governance and oversight\n- Clear roles, responsibilities, and escalation pathways\n\n**Notes for Reviewers**\n\nThis BCP and Risk Profile were intentionally written in accessible, business‑focused language to support executive understanding and operational ownership. While aligned with NIST frameworks, the emphasis is on clarity, practicality, and decision support rather than technical depth. The structure mirrors real‑world continuity documentation used in regulated industries such as FinTech and financial services.\n\n**Process "
     },
     {
       "id": 1146873085,
@@ -1002,7 +1010,8 @@
       "forks": 0,
       "open_issues": 0,
       "watchers": 0,
-      "default_branch": "main"
+      "default_branch": "main",
+      "readme": "# Cyber Risk Analysis: Scenario‑Based Threat Pathways (Privileged Account Abuse & Third‑Party Vendor Breach)\n\n**Overview:**\n\nThis project contains two scenario‑based cyber risk analyses designed to evaluate how realistic security incidents can escalate into material business risk. The scenarios; Privileged Account Abuse and Third‑Party Vendor Breach demonstrate how threats originating either inside or outside the organization can lead to data exposure, operational disruption, regulatory scrutiny, and reputational harm.\n\nRather than focusing solely on control gaps, each analysis traces a full threat pathway from initial compromise to organizational impact, supporting informed executive decision‑making and risk prioritization.\n\n**Technologies & Tools Used:**\n\n- Microsoft Word (formal risk analysis report)\n- NIST SP 800-53\n- Organization-defined 5×5 impact and likelihood risk matrix\n- Scenario-based risk assessment methodology\n- Quantitative risk scoring (Impact × Likelihood)\n\n**Deliverable Features:**\n\n- Clear, narrative‑driven cyber risk scenarios (internal and external threat origins)\n- Defined threat pathways illustrating how compromise leads to business impact\n- Identification of affected assets, data types, and business functions\n- Quantitative inherent risk scoring using a 5×5 matrix\n- Business‑focused impact and likelihood analysis\n- Evaluation of risk treatment options with a recommended course of action\n- Executive‑ready summary language suitable for governance and oversight discussions\n\n**Notes for Reviewers:**\n\nThese analyses prioritize clarity, business relevance, and accessibility for executive and non‑technical stakeholders. Plain English is used to describe threat scenarios, impacts, and decisions, while maintaining a NIST‑aligned structure and defensible risk methodology. The goal is to communicate risk in a way that supports governance, not overwhelm readers with technical detail.\n\n**Start to Finish Process:**\n\nEach analysis began by defining a realis"
     },
     {
       "id": 1147046411,
@@ -1111,7 +1120,8 @@
       "forks": 0,
       "open_issues": 0,
       "watchers": 0,
-      "default_branch": "main"
+      "default_branch": "main",
+      "readme": "# NIST-Aligned Cybersecurity Policy Library\n\n## Overview\n\nThis repository contains a curated set of professionally written cybersecurity policy templates designed to support governance, risk management, and audit readiness. The policies are aligned to the NIST Cybersecurity Framework and NIST SP 800-53 and are intended to translate cyber risk concepts into clear, actionable governance requirements that organizations can realistically implement.\n\nRather than focusing on technical procedures, these policies emphasize accountability, consistency, and decision-making at the organizational level. Together, they form a foundational security governance framework suitable for small to mid-size organizations or teams seeking to mature their cybersecurity posture.\n\n---\n\n## Video Walkthrough\n\nA walkthrough video providing an overview of the policy structure, alignment, and intended use.\n\nWatch it here: https://www.loom.com/share/572e944a8d894cfea144bac579f27eb6\n\n---\n## Technologies & Frameworks Used\n\n- Microsoft Word (policy drafting and formatting)\n- NIST Cybersecurity Framework (CSF)\n- NIST SP 800-53\n- ISO/IEC 27001 (reference alignment)\n- Governance-focused policy design methodology\n\n---\n\n## Policy Deliverables\n\nThis repository includes the following policy templates:\n\n- **Access Control & Privileged Access Policy**  \n  Governance requirements for managing user and privileged access based on least privilege and business need.\n\n- **Incident Response & Security Incident Reporting Policy**  \n  Governance requirements for identifying, escalating, and managing security incidents.\n\n- **Third-Party Information Security Policy**  \n  Risk-based governance for managing cybersecurity risks introduced by vendors and external partners.\n\n- **Security Awareness & Acceptable Use Policy**  \n  Governance requirements for responsible system use and security awareness across the organization.\n\nEach policy is written to be clear, consistent, and adaptable without reliance on proprietary tools o"
     }
   ]
 }
