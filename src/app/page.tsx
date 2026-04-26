@@ -1,8 +1,7 @@
 'use client';
 
 import PortfolioClient from '@/components/Portfolio';
-import { useEffect, useState } from 'react';
-import data from '@/app/data.json';
+import userData from '@/app/data.json';
 
 interface GitHubUser {
   login: string;
@@ -25,23 +24,8 @@ interface GitHubRepo {
 }
 
 export default function Page() {
-  const [userData, setUserData] = useState<GitHubUser | null>(null);
-  const [repoData, setRepoData] = useState<GitHubRepo[]>([]);
+  const user: GitHubUser = userData.user as GitHubUser;
+  const repos: GitHubRepo[] = userData.repos as GitHubRepo[];
 
-  useEffect(() => {
-    if (data?.user?.login) {
-      setUserData(data.user as GitHubUser);
-      setRepoData((data.repos || []) as GitHubRepo[]);
-    }
-  }, []);
-
-  if (!userData) {
-    return (
-      <div className="min-h-screen bg-[#0B1F17] flex items-center justify-center">
-        <div className="text-[#95D5B2] text-xl animate-pulse">Loading...</div>
-      </div>
-    );
-  }
-
-  return <PortfolioClient userData={userData} repoData={repoData} />;
+  return <PortfolioClient userData={user} repoData={repos} />;
 }
