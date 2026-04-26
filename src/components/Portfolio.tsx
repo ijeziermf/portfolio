@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion, useInView, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform, useSpring, type MotionValue } from 'framer-motion';
 
 interface GitHubUser {
   login: string;
@@ -23,7 +23,7 @@ interface GitHubRepo {
   language: string | null;
 }
 
-function Hero({ scrollY }: { scrollY: motion.MotionValue<number> }) {
+function Hero({ scrollY }: { scrollY: MotionValue<number> }) {
   const y = useTransform(scrollY, [0, 500], [0, 150]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
