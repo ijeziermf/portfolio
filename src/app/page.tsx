@@ -29,9 +29,9 @@ export default function Page() {
   const [repoData, setRepoData] = useState<GitHubRepo[]>([]);
 
   useEffect(() => {
-    if (data?.user) {
-      setUserData(data.user);
-      setRepoData(data.repos || []);
+    if (data?.user?.login) {
+      setUserData(data.user as GitHubUser);
+      setRepoData((data.repos || []) as GitHubRepo[]);
     }
   }, []);
 
