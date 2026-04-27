@@ -100,77 +100,52 @@ function Nav() {
 
 function Hero() {
   return (
-    <section className="min-h-screen flex items-center relative overflow-hidden">
-      <div className="absolute inset-0 gradient-mesh" />
+    <section className="min-h-screen flex items-center relative">
+      {/* Gradient mesh background - behind content */}
+      <div className="absolute inset-0 gradient-mesh z-0" />
       
-      <div className="max-w-6xl mx-auto px-6 py-32 w-full">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-32 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-10 gap-12 items-center">
-          <div className="lg:col-span-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-6"
-            >
+          {/* Text content - stacks above image on mobile */}
+          <div className="lg:col-span-6 text-center lg:text-left">
+            <div className="mb-6">
               <p className="text-[#D4AF37] text-sm font-mono tracking-wider uppercase">
                 SECURITY AUTOMATION ENGINEER · GRC · DEVOPS
               </p>
-            </motion.div>
+            </div>
             
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-6xl md:text-7xl lg:text-8xl font-bold text-[#E8F5EE] mb-6 tracking-tight leading-tight"
-            >
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-[#E8F5EE] mb-6 tracking-tight leading-tight">
               Ifeanyi<br />Ijezie
-            </motion.h1>
+            </h1>
             
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl md:text-2xl text-[#8AB49A] font-light mb-10 max-w-2xl"
-            >
+            <p className="text-xl md:text-2xl text-[#8AB49A] font-light mb-10 max-w-2xl mx-auto lg:mx-0">
               Architecting autonomous security platforms and automating compliance workflows.<br />
               <span className="text-[#95D5B2]">CompTIA Security+ | Microsoft SC-900</span>
-            </motion.p>
+            </p>
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap gap-4"
-            >
-              <motion.a
+            <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+              <a
                 href="#"
-                className="px-8 py-4 bg-gradient-to-r from-[#2D6A4F] to-[#3A8A67] text-white font-semibold rounded-lg shadow-lg shadow-[#2D6A4F]/25 transition-all"
-                whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(45,106,79,0.3)' }}
-                whileTap={{ scale: 0.98 }}
+                className="px-8 py-4 bg-gradient-to-r from-[#2D6A4F] to-[#3A8A67] text-white font-semibold rounded-lg shadow-lg shadow-[#2D6A4F]/25 hover:shadow-[#2D6A4F]/40 hover:scale-105 transition-all"
               >
                 Download Resume
-              </motion.a>
+              </a>
               
-              <motion.a
+              <a
                 href="#projects"
-                className="px-8 py-4 border border-[#2D6A4F] text-[#95D5B2] font-semibold rounded-lg hover:bg-[#2D6A4F]/20 transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
+                className="px-8 py-4 border border-[#2D6A4F] text-[#95D5B2] font-semibold rounded-lg hover:bg-[#2D6A4F]/20 hover:scale-105 transition-all"
               >
                 View Projects
-              </motion.a>
-            </motion.div>
+              </a>
+            </div>
           </div>
           
+          {/* Image - stacks below text on mobile, both centered */}
           <div className="lg:col-span-4 flex justify-center lg:justify-end">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="relative"
-            >
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#D4AF37] to-[#2D6A4F] opacity-20 blur-2xl" />
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-3xl border-2 border-[#D4AF37]/40 overflow-hidden bg-[#112D24] backdrop-blur flex flex-col items-center justify-center">
+            <div className="relative">
+              {/* Glow effect */}
+              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-[#D4AF37]/30 to-[#2D6A4F]/30 opacity-40 blur-xl" />
+              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-3xl border-2 border-[#D4AF37]/40 overflow-hidden bg-[#112D24] backdrop-blur flex flex-col items-center justify-center shadow-[0_0_40px_rgba(212,175,55,0.15)] shadow-[0_0_80px_rgba(45,106,79,0.2)]">
                 <img
                   src="https://avatars.githubusercontent.com/u/258281403?v=4"
                   alt="Ifeanyi Ijezie"
@@ -178,20 +153,17 @@ function Hero() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F17]/80 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-0 right-0 text-center">
-                  <p className="text-[#D4AF37] font-mono text-xs tracking-widest uppercase">Security Automation</p>
+                  <p className="text-[#D4AF37] font-mono text-xs tracking-widest uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">Security Automation</p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
       
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
-        <motion.div
-          animate={{ scaleY: [0, 1, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-1 h-12 bg-gradient-to-b from-[#D4AF37] to-transparent rounded-full"
-        />
+      {/* Scroll indicator - CSS pulse, no Framer Motion */}
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10">
+        <div className="w-1 h-12 bg-gradient-to-b from-[#D4AF37] to-transparent rounded-full animate-pulse" />
       </div>
     </section>
   );
@@ -206,7 +178,7 @@ function Certifications({ certifications }: { certifications: Certification[] })
   
   return (
     <section ref={ref} className="py-20 px-6 bg-[#0a1510]">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -232,9 +204,9 @@ function Certifications({ certifications }: { certifications: Certification[] })
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ delay: 0.5 }}
-            className="text-center mt-6"
+            className="mt-6"
           >
-            <p className="text-[#8AB49A] text-sm font-medium">
+            <p className="text-[#95D5B2] text-sm font-medium">
               Pursuing: {pursuing.map(c => c.name).join(' | ')}
             </p>
           </motion.div>
@@ -294,7 +266,7 @@ function Competencies({ competencies, additionalSkills }: { competencies: Compet
           transition={{ delay: 0.8 }}
           className="text-center mt-12"
         >
-          <p className="text-[#8AB49A] text-sm">
+          <p className="text-[#95D5B2] text-sm font-medium">
             Also experienced in: {additionalSkills}
           </p>
         </motion.div>
@@ -335,12 +307,13 @@ function ProjectCard({ project, index, featured }: { project: Project; index: nu
       />
       
       <div className="relative">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="px-3 py-1 bg-[#2D6A4F]/40 text-[#95D5B2] text-xs rounded-full font-mono ml-1 mt-1">
+        {/* Tags flow normally at top of card - no absolute positioning */}
+        <div className="flex items-center gap-3 mb-4 mt-1 ml-1">
+          <span className="px-3 py-1 bg-[#2D6A4F]/40 text-[#95D5B2] text-xs rounded-full font-mono">
             {project.category}
           </span>
           {featured && (
-            <span className="px-3 py-1 bg-[#D4AF37]/20 text-[#D4AF37] text-xs rounded-full font-mono ml-1 mt-1">
+            <span className="px-3 py-1 bg-[#D4AF37]/20 text-[#D4AF37] text-xs rounded-full font-mono">
               Featured
             </span>
           )}
@@ -420,17 +393,17 @@ function About() {
   
   return (
     <section id="about" ref={ref} className="py-32 px-6 bg-[#0B1F17]">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5EE] mb-4">About</h2>
         </motion.div>
         
-        <div className="flex flex-col items-center text-center">
+        <div className="flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -464,7 +437,7 @@ function About() {
               Currently pursuing CISM and CISSP certifications.
             </p>
             
-            <div className="flex flex-wrap justify-center gap-8 text-sm text-[#8AB49A]">
+            <div className="flex flex-wrap justify-center gap-8 text-sm text-[#95D5B2] font-medium">
               <p>Waldorf, MD | Open to Relocate</p>
               <p>BS, Cum Laude 3.57 GPA | Gannon University</p>
             </div>
@@ -488,14 +461,14 @@ function Contact({ contact }: { contact: Contact }) {
   
   return (
     <section id="contact" ref={ref} className="py-32 px-6 bg-[#0a1510]">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5EE] mb-4">Let's Connect</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5EE] mb-4">Let&apos;s Connect</h2>
           <p className="text-[#8AB49A] text-lg">Open to cybersecurity, GRC, and DevOps opportunities</p>
         </motion.div>
         
@@ -524,7 +497,7 @@ function Contact({ contact }: { contact: Contact }) {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.5 }}
-          className="text-center mt-20 text-[#506860] text-sm"
+          className="mt-20 text-[#506860] text-sm"
         >
           <p>© 2026 Ifeanyi Ijezie · Built with Next.js</p>
         </motion.footer>
