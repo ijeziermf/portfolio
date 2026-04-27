@@ -125,10 +125,12 @@ function Hero() {
             
             <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
               <a
-                href="#"
+                href="https://www.linkedin.com/in/ifeanyi-ijezie/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-4 bg-gradient-to-r from-[#2D6A4F] to-[#3A8A67] text-white font-semibold rounded-lg shadow-lg shadow-[#2D6A4F]/25 hover:shadow-[#2D6A4F]/40 hover:scale-105 transition-all"
               >
-                Download Resume
+                LinkedIn
               </a>
               
               <a
