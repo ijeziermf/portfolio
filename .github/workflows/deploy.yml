@@ -26,9 +26,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Fetch GitHub data with READMEs
-        run: node scripts/fetch-data.js
-
       - name: Build
         run: npm run build
 
