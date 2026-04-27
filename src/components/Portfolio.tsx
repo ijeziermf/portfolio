@@ -1,50 +1,43 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
-import { motion, useInView, useScroll, useTransform, useSpring, type MotionValue } from 'framer-motion';
+import { motion, useInView, useScroll, useSpring } from 'framer-motion';
 
-interface GitHubUser {
-  login: string;
+interface Certification {
   name: string;
-  bio: string;
-  location: string;
-  followers: number;
-  following: number;
-  public_repos: number;
-  avatar_url: string;
-  html_url: string;
-  twitter_username: string | null;
-  company: string | null;
-  blog: string;
+  status: string;
+  issuer?: string;
 }
 
-interface GitHubRepo {
-  name: string;
-  description: string | null;
-  html_url: string;
-  stargazers_count: number;
-  language: string | null;
-  topics: string[];
-  readme: string | null;
-  forks_count: number;
-  open_issues_count: number;
-  default_branch: string;
-  pushed_at: string;
+interface Competency {
+  title: string;
+  descriptor: string;
+  tags: string[];
 }
 
-const languageColors: Record<string, string> = {
-  Python: '#3572A5',
-  JavaScript: '#f1e05a',
-  TypeScript: '#2b7489',
-  HTML: '#e34c26',
-  CSS: '#563d7c',
-  Shell: '#89e051',
-  Go: '#00ADD8',
-  Rust: '#dea584',
-  Java: '#b07219',
-  Jupyter: '#DA5B0B',
-  Vue: '#41B883',
-};
+interface Project {
+  name: string;
+  category: string;
+  summary: string;
+  tags: string[];
+  url: string;
+  featured: boolean;
+}
+
+interface Contact {
+  email: string;
+  linkedin: string;
+  github: string;
+  discord: string;
+}
+
+interface Data {
+  certifications: Certification[];
+  competencies: Competency[];
+  additionalSkills: string;
+  contact: Contact;
+  projects: Project[];
+}
 
 function useScrolled(threshold: number = 50) {
   const [scrolled, setScrolled] = useState(false);
@@ -71,326 +64,350 @@ function Nav() {
       <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
         <motion.a 
           href="#"
-          className="text-2xl font-bold text-[#E8F5EE] tracking-tight"
+          className="text-xl font-bold text-[#E8F5EE] tracking-tight"
           whileHover={{ scale: 1.02 }}
         >
-          <span className="text-[#95D5B2]">I</span>F
+          Ifeanyi <span className="text-[#D4AF37]">Ijezie</span>
         </motion.a>
         
-        <div className="flex items-center gap-8">
-          {['Projects', 'About', 'Contact'].map((item, i) => (
+        <div className="hidden md:flex items-center gap-8">
+          {['Home', 'Projects', 'About', 'Contact'].map((item, i) => (
             <motion.a
               key={item}
-              href={item === 'Projects' ? '#projects' : item === 'About' ? '#about' : '#contact'}
-              className="text-sm text-[#8AB49A] hover:text-[#E8F5EE] transition-colors relative"
+              href={item === 'Home' ? '#' : item === 'Projects' ? '#projects' : item === 'About' ? '#about' : '#contact'}
+              className="text-sm text-[#8AB49A] hover:text-[#E8F5EE] transition-colors"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * i }}
               whileHover={{ y: -2 }}
             >
               {item}
-              <motion.span 
-                className="absolute -bottom-1 left-0 w-full h-px bg-[#95D5B2] origin-left"
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.3 }}
-              />
             </motion.a>
           ))}
+          <motion.a
+            href="#contact"
+            className="px-4 py-2 border border-[#2D6A4F] text-[#95D5B2] text-sm font-medium rounded-lg hover:bg-[#2D6A4F]/20 transition-all"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Resume
+          </motion.a>
         </div>
       </div>
     </motion.nav>
   );
 }
 
-function Hero({ scrollY }: { scrollY: MotionValue<number> }) {
-  const y = useTransform(scrollY, [0, 800], [0, 250]);
-  const opacity = useTransform(scrollY, [0, 500], [1, 0]);
-  const scale = useTransform(scrollY, [0, 400], [1, 0.95]);
-
+function Hero() {
+  const { scrollY } = useScroll();
+  const y = useSpring(scrollY, { stiffness: 80, damping: 25 });
+  const opacity = useSpring(scrollY, { stiffness: 80, damping: 25 });
+  
   return (
-    <motion.section 
-      style={{ y, opacity, scale }}
-      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden"
-    >
-      <div className="absolute inset-0 bg-[#0B1F17]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            radial-gradient(circle at 20% 30%, rgba(45,106,79,0.15) 0%, transparent 50%),
-            radial-gradient(circle at 80% 70%, rgba(149,213,178,0.1) 0%, transparent 40%),
-            radial-gradient(circle at 50% 50%, rgba(45,106,79,0.08) 0%, transparent 60%)
-          `,
-        }} />
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #2D6A4F 1px, transparent 1px)`,
-          backgroundSize: '40px 40px',
-          opacity: 0.4
-        }} />
+    <section className="min-h-screen flex items-center relative overflow-hidden">
+      <div className="absolute inset-0 gradient-mesh" />
+      
+      <div className="max-w-6xl mx-auto px-6 py-32 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-10 gap-12 items-center">
+          <div className="lg:col-span-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-6"
+            >
+              <p className="text-[#D4AF37] text-sm font-mono tracking-wider uppercase">
+                SECURITY AUTOMATION ENGINEER · GRC · DEVOPS
+              </p>
+            </motion.div>
+            
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-6xl md:text-7xl lg:text-8xl font-bold text-[#E8F5EE] mb-6 tracking-tight leading-tight"
+            >
+              Ifeanyi<br />Ijezie
+            </motion.h1>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-xl md:text-2xl text-[#8AB49A] font-light mb-10 max-w-2xl"
+            >
+              Architecting autonomous security platforms and automating compliance workflows.<br />
+              <span className="text-[#95D5B2]">CompTIA Security+ | Microsoft SC-900</span>
+            </motion.p>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-wrap gap-4"
+            >
+              <motion.a
+                href="#"
+                className="px-8 py-4 bg-gradient-to-r from-[#2D6A4F] to-[#3A8A67] text-white font-semibold rounded-lg shadow-lg shadow-[#2D6A4F]/25 transition-all"
+                whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(45,106,79,0.3)' }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Download Resume
+              </motion.a>
+              
+              <motion.a
+                href="#projects"
+                className="px-8 py-4 border border-[#2D6A4F] text-[#95D5B2] font-semibold rounded-lg hover:bg-[#2D6A4F]/20 transition-all"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                View Projects
+              </motion.a>
+            </motion.div>
+          </div>
+          
+          <div className="lg:col-span-4 flex justify-center lg:justify-end">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="relative"
+            >
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#D4AF37] to-[#2D6A4F] opacity-20 blur-2xl" />
+              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-3xl border-2 border-[#D4AF37]/40 overflow-hidden bg-[#112D24] backdrop-blur flex items-center justify-center">
+                <div className="text-7xl md:text-8xl font-bold text-[#D4AF37] opacity-80">
+                  II
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </div>
       
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        className="z-10 text-center px-4 max-w-3xl"
-      >
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="relative w-36 h-36 mx-auto mb-10"
-        >
-          <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#2D6A4F] to-[#95D5B2] opacity-20 blur-xl" />
-          <div className="relative w-full h-full rounded-3xl border border-[#2D6A4F]/30 overflow-hidden bg-[#112D24] backdrop-blur">
-            <img src="/ugo_logo.png" alt="UgoAI" className="w-full h-full object-cover" />
-          </div>
-        </motion.div>
-        
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-[#95D5B2] text-sm font-medium tracking-[0.2em] uppercase mb-4"
-        >
-          Governance & Risk Management
-        </motion.p>
-        
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-6xl md:text-8xl font-bold text-[#E8F5EE] mb-6 tracking-tight"
-        >
-          Ifeanyi <span className="text-[#95D5B2]">Ijezie</span>
-        </motion.h1>
-        
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="text-xl md:text-2xl text-[#8AB49A] mb-8 font-light"
-        >
-          MBA Candidate • Forming security risk into clear business decisions
-        </motion.p>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="flex flex-wrap justify-center gap-4"
-        >
-          <motion.a
-            href="https://github.com/ijeziermf"
-            target="_blank"
-            whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(45,106,79,0.3)' }}
-            whileTap={{ scale: 0.98 }}
-            className="px-8 py-4 bg-gradient-to-r from-[#2D6A4F] to-[#3A8A67] text-white font-semibold rounded-full shadow-lg shadow-[#2D6A4F]/25 transition-all"
-          >
-            View GitHub
-          </motion.a>
-          
-          <motion.a
-            href="#projects"
-            whileHover={{ scale: 1.05, backgroundColor: 'rgba(17,45,36,0.8)' }}
-            whileTap={{ scale: 0.98 }}
-            className="px-8 py-4 border border-[#2D6A4F]/50 text-[#95D5B2] font-semibold rounded-full backdrop-blur-sm transition-all"
-          >
-            Explore Work
-          </motion.a>
-        </motion.div>
-      </motion.div>
-
-      <motion.div
-        style={{ opacity }}
+        style={{ opacity: opacity.get() > 0.5 ? 1 : 0 }}
         className="absolute bottom-12 left-1/2 -translate-x-1/2"
       >
         <motion.div
-          animate={{ y: [0, 12, 0] }}
+          animate={{ scaleY: [0, 1, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-8 h-14 rounded-full border-2 border-[#2D6A4F]/40 flex justify-center pt-3"
-        >
-          <motion.div className="w-1.5 h-3 bg-[#95D5B2] rounded-full opacity-60" />
-        </motion.div>
+          className="w-1 h-12 bg-gradient-to-b from-[#D4AF37] to-transparent rounded-full"
+        />
       </motion.div>
-    </motion.section>
+    </section>
   );
 }
 
-function About({ user }: { user: GitHubUser }) {
+function Certifications({ certifications }: { certifications: Certification[] }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
-
+  
+  const earned = certifications.filter(c => c.status === 'earned');
+  const pursuing = certifications.filter(c => c.status === 'pursuing');
+  
   return (
-    <section id="about" ref={ref} className="py-32 px-4 bg-[#0a1510] relative overflow-hidden">
-      <div className="absolute inset-0" style={{
-        backgroundImage: 'radial-gradient(circle at 50% 100%, rgba(45,106,79,0.1) 0%, transparent 50%)',
-      }} />
-      
-      <div className="max-w-5xl mx-auto relative">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
+    <section ref={ref} className="py-20 px-6 bg-[#0a1510]">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-4xl md:text-5xl font-bold text-center text-[#E8F5EE] mb-16"
+          transition={{ duration: 0.6 }}
+          className="flex flex-wrap justify-center gap-4"
         >
-          About
-        </motion.h2>
+          {earned.map((cert, i) => (
+            <motion.div
+              key={cert.name}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+              className="cert-card px-6 py-4 glass rounded-xl border border-[#D4AF37]/30 hover:border-[#D4AF37]/60 transition-all duration-300"
+            >
+              <p className="text-[#E8F5EE] font-mono text-sm">{cert.name}</p>
+              {cert.issuer && <p className="text-[#8AB49A] text-xs mt-1">{cert.issuer}</p>}
+            </motion.div>
+          ))}
+        </motion.div>
         
-        <div className="flex flex-col lg:flex-row gap-16 items-center">
+        {pursuing.length > 0 && (
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="flex-shrink-0"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.5 }}
+            className="text-center mt-6"
           >
-            <div className="relative">
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#2D6A4F] to-[#95D5B2] opacity-20 blur-2xl" />
-              <div className="relative w-44 h-44 rounded-2xl border-2 border-[#2D6A4F]/30 overflow-hidden">
-                <img 
-                  src={user.avatar_url} 
-                  alt={user.name || user.login}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
+            <p className="text-[#506860] text-sm">
+              Pursuing: {pursuing.map(c => c.name).join(' | ')}
+            </p>
           </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="flex-1"
-          >
-            <h3 className="text-2xl font-semibold text-[#E8F5EE] mb-4">{user.name}</h3>
-            <p className="text-[#8AB49A] mb-6 text-lg leading-relaxed">{user.bio}</p>
-            
-            <div className="flex gap-12">
-              {[
-                { label: 'Repositories', value: user.public_repos },
-                { label: 'Followers', value: user.followers },
-                { label: 'Following', value: user.following }
-              ].map((stat, i) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.4 + i * 0.1 }}
-                >
-                  <div className="text-3xl font-bold text-[#95D5B2]">{stat.value}</div>
-                  <div className="text-sm text-[#506860]">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+        )}
       </div>
     </section>
   );
 }
 
-function ProjectCard({ repo, index }: { repo: GitHubRepo; index: number }) {
+function Competencies({ competencies, additionalSkills }: { competencies: Competency[]; additionalSkills: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  
+  return (
+    <section ref={ref} className="py-32 px-6 bg-[#0B1F17]">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5EE] mb-4">Expertise</h2>
+          <p className="text-[#8AB49A] text-lg">Core competencies and technical skills</p>
+        </motion.div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {competencies.map((comp, i) => (
+            <motion.div
+              key={comp.title}
+              ref={ref}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="group relative p-8 glass rounded-xl border-l-4 border-[#D4AF37]/60 hover:border-[#D4AF37] transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/10"
+              whileHover={{ y: -4 }}
+            >
+              <h3 className="text-xl font-semibold text-[#E8F5EE] mb-3">{comp.title}</h3>
+              <p className="text-[#8AB49A] mb-6 leading-relaxed">{comp.descriptor}</p>
+              <div className="flex flex-wrap gap-2">
+                {comp.tags.map(tag => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1 bg-[#1E4535]/50 text-[#95D5B2] text-xs rounded-full font-mono"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+        
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.8 }}
+          className="text-center mt-12"
+        >
+          <p className="text-[#506860] text-sm">
+            Also experienced in: {additionalSkills}
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function ProjectCard({ project, index, featured }: { project: Project; index: number; featured?: boolean }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-30px' });
   const [hovered, setHovered] = useState(false);
-
+  
   return (
     <motion.a
       ref={ref}
-      href={repo.html_url}
+      href={project.url}
       target="_blank"
+      rel="noopener noreferrer"
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.08 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="block relative p-8 rounded-3xl bg-gradient-to-br from-[#112D24] to-[#0B1F17] border border-[#1E4535] hover:border-[#95D5B2]/50 transition-all duration-500 group overflow-hidden"
+      className={`block relative p-8 rounded-xl glass border border-[#1E4535] hover:border-[#D4AF37]/50 transition-all duration-500 group overflow-hidden ${
+        featured ? 'md:col-span-2' : ''
+      }`}
+      style={{
+        transformStyle: 'preserve-3d',
+        perspective: '1000px',
+      }}
     >
-      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#2D6A4F]/20 to-transparent rounded-bl-full transition-all duration-500 group-hover:scale-150" />
+      <div
+        className="absolute inset-0 bg-gradient-to-br from-[#2D6A4F]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style={{
+          transform: hovered ? 'rotateX(2deg) rotateY(-2deg)' : 'none',
+        }}
+      />
       
       <div className="relative">
-        <div className="flex items-start justify-between mb-4">
-          <h3 className="text-xl font-semibold text-[#E8F5EE] group-hover:text-[#95D5B2] transition-colors">
-            {repo.name}
-          </h3>
-          {repo.language && (
-            <span 
-              className="flex items-center gap-2 text-xs px-3 py-1 rounded-full bg-[#1E4535]/50 text-[#95D5B2]"
-            >
-              <span 
-                className="w-2 h-2 rounded-full" 
-                style={{ backgroundColor: languageColors[repo.language] || '#95D5B2' }} 
-              />
-              {repo.language}
+        <div className="flex items-center gap-3 mb-4">
+          <span className="px-3 py-1 bg-[#2D6A4F]/30 text-[#95D5B2] text-xs rounded-full font-mono">
+            {project.category}
+          </span>
+          {featured && (
+            <span className="px-3 py-1 bg-[#D4AF37]/20 text-[#D4AF37] text-xs rounded-full font-mono">
+              Featured
             </span>
           )}
         </div>
         
-        <p className="text-[#8AB49A] mb-4 line-clamp-2">
-          {repo.description || 'No description available'}
+        <h3 className={`font-semibold text-[#E8F5EE] mb-3 group-hover:text-[#D4AF37] transition-colors ${
+          featured ? 'text-2xl md:text-3xl' : 'text-xl'
+        }`}>
+          {project.name}
+        </h3>
+        
+        <p className={`text-[#8AB49A] mb-6 leading-relaxed ${
+          featured ? 'text-lg' : ''
+        }`}>
+          {project.summary}
         </p>
         
-        <motion.div
-          animate={{ height: hovered && repo.readme ? 'auto' : 0, opacity: hovered && repo.readme ? 1 : 0 }}
-          className="overflow-hidden"
-        >
-          {repo.readme && (
-            <div className="text-xs text-[#506860] mb-4 font-mono bg-[#0a1510]/80 p-4 rounded-xl leading-relaxed">
-              {repo.readme}
-            </div>
-          )}
-        </motion.div>
-        
-        <div className="flex items-center gap-4 text-xs text-[#506860]">
-          <span className="flex items-center gap-1">
-            ⭐ {repo.stargazers_count}
-          </span>
-          <span className="flex items-center gap-1">
-            ⑂ {repo.forks_count}
-          </span>
-          {repo.topics?.slice(0, 2).map(topic => (
-            <span key={topic} className="px-2 py-1 bg-[#1E4535]/50 rounded-full text-[#95D5B2]/80">
-              {topic}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {project.tags.map(tag => (
+            <span
+              key={tag}
+              className="px-3 py-1 bg-[#1E4535]/50 text-[#95D5B2] text-xs rounded-full font-mono"
+            >
+              {tag}
             </span>
           ))}
         </div>
+        
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: hovered ? 1 : 0, x: hovered ? 0 : -20 }}
+          transition={{ duration: 0.3 }}
+          className="flex items-center gap-2 text-[#D4AF37] font-medium"
+        >
+          <span>View Project</span>
+          <span className="text-lg">→</span>
+        </motion.div>
       </div>
     </motion.a>
   );
 }
 
-function Projects({ repos }: { repos: GitHubRepo[] }) {
+function Projects({ projects }: { projects: Project[] }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-
+  
+  const featured = projects.find(p => p.featured);
+  const regular = projects.filter(p => !p.featured);
+  
   return (
-    <section id="projects" ref={ref} className="py-32 px-4 bg-[#0B1F17] relative overflow-hidden">
-      <div className="absolute inset-0" style={{
-        backgroundImage: `
-          radial-gradient(circle at 10% 20%, rgba(149,213,178,0.05) 0%, transparent 30%),
-          radial-gradient(circle at 90% 80%, rgba(45,106,79,0.08) 0%, transparent 30%)
-        `,
-      }} />
-      
-      <div className="max-w-6xl mx-auto relative">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
+    <section id="projects" ref={ref} className="py-32 px-6 bg-[#0a1510]">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-4xl md:text-5xl font-bold text-center text-[#E8F5EE] mb-4"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          Selected Work
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.1 }}
-          className="text-center text-[#8AB49A] mb-16"
-        >
-          A collection of projects exploring security, automation, and AI
-        </motion.p>
-
+          <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5EE] mb-4">Selected Work</h2>
+          <p className="text-[#8AB49A] text-lg">Cybersecurity, GRC, and AI-driven automation</p>
+        </motion.div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {repos.map((repo, i) => (
-            <ProjectCard key={repo.name} repo={repo} index={i} />
+          {featured && <ProjectCard project={featured} index={0} featured />}
+          {regular.map((project, i) => (
+            <ProjectCard key={project.name} project={project} index={i + 1} />
           ))}
         </div>
       </div>
@@ -398,61 +415,135 @@ function Projects({ repos }: { repos: GitHubRepo[] }) {
   );
 }
 
-function Footer() {
+function About() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  
   return (
-    <footer id="contact" ref={ref} className="py-20 px-4 bg-[#0a1510] border-t border-[#1E4535]">
-      <div className="max-w-3xl mx-auto text-center">
-        <motion.h3
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-2xl font-semibold text-[#E8F5EE] mb-4"
-        >
-          Let's Connect
-        </motion.h3>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.1 }}
-          className="text-[#8AB49A] mb-8"
-        >
-          Interested in collaboration or have questions?
-        </motion.p>
+    <section id="about" ref={ref} className="py-32 px-6 bg-[#0B1F17]">
+      <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.2 }}
-          className="flex justify-center gap-6"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          <a href="https://github.com/ijeziermf" className="text-[#8AB49A] hover:text-[#95D5B2] transition-colors">GitHub</a>
-          <a href="https://github.com/ijeziermf/UgoAI" className="text-[#8AB49A] hover:text-[#95D5B2] transition-colors">UgoAI</a>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5EE] mb-4">About</h2>
         </motion.div>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.3 }}
-          className="text-sm text-[#506860] mt-12"
-        >
-          © {new Date().getFullYear()} Ifeanyi Ijezie
-        </motion.p>
+        
+        <div className="flex flex-col items-center text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="w-24 h-24 rounded-full border-2 border-[#2D6A4F]/40 overflow-hidden mb-8"
+          >
+            <img
+              src="https://avatars.githubusercontent.com/u/258281403?v=4"
+              alt="Ifeanyi Ijezie"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="max-w-3xl"
+          >
+            <h3 className="text-2xl font-semibold text-[#E8F5EE] mb-6">Ifeanyi Ijezie</h3>
+            
+            <p className="text-[#8AB49A] text-lg leading-relaxed mb-6">
+              Security Automation Engineer and Systems Designer with hands-on experience architecting autonomous security platforms, designing multi-model agent systems, and automating compliance workflows. Security+ and SC-900 certified with a proven track record building scalable, production-ready systems that reduce manual effort by 70%+ and improve operational reliability.
+            </p>
+            
+            <p className="text-[#8AB49A] text-lg leading-relaxed mb-6">
+              Previously: Intelligence Intern (Gannon University) | Information Security Analyst (Lids)
+            </p>
+            
+            <p className="text-[#8AB49A] text-lg leading-relaxed mb-8">
+              Currently pursuing CISM and CISSP certifications.
+            </p>
+            
+            <div className="flex flex-wrap justify-center gap-8 text-sm text-[#506860]">
+              <p>Waldorf, MD | Open to Relocate</p>
+              <p>BS, Cum Laude 3.57 GPA | Gannon University</p>
+            </div>
+          </motion.div>
+        </div>
       </div>
-    </footer>
+    </section>
   );
 }
 
-export default function Portfolio({ userData, repoData }: { userData: GitHubUser; repoData: GitHubRepo[] }) {
-  const { scrollY } = useScroll();
-  const smoothScrollY = useSpring(scrollY, { stiffness: 80, damping: 25 });
+function Contact({ contact }: { contact: Contact }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  
+  const links = [
+    { label: 'Email', value: contact.email, href: `mailto:${contact.email}` },
+    { label: 'LinkedIn', value: 'linkedin.com/in/ifeanyi-ijezie', href: contact.linkedin },
+    { label: 'GitHub', value: 'github.com/ijeziermf', href: contact.github },
+    { label: 'Discord', value: 'discord.gg/dwP8QQxAtK', href: contact.discord },
+  ];
+  
+  return (
+    <section id="contact" ref={ref} className="py-32 px-6 bg-[#0a1510]">
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5EE] mb-4">Let's Connect</h2>
+          <p className="text-[#8AB49A] text-lg">Open to cybersecurity, GRC, and DevOps opportunities</p>
+        </motion.div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {links.map((link, i) => (
+            <motion.a
+              key={link.label}
+              href={link.href}
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+              className="group p-6 glass rounded-xl border border-[#1E4535] hover:border-[#D4AF37]/50 transition-all duration-300 text-center"
+              whileHover={{ y: -4, scale: 1.02 }}
+            >
+              <p className="text-[#95D5B2] text-sm mb-1">{link.label}</p>
+              <p className="text-[#E8F5EE] font-medium group-hover:text-[#D4AF37] transition-colors">
+                {link.value}
+              </p>
+            </motion.a>
+          ))}
+        </div>
+        
+        <motion.footer
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.5 }}
+          className="text-center mt-20 text-[#506860] text-sm"
+        >
+          <p>© 2026 Ifeanyi Ijezie · Built with Next.js</p>
+        </motion.footer>
+      </div>
+    </section>
+  );
+}
 
+export default function Portfolio({ data }: { data: Data }) {
   return (
     <main className="bg-[#0B1F17] min-h-screen text-[#E8F5EE] font-sans selection:bg-[#2D6A4F] selection:text-white">
       <Nav />
-      <Hero scrollY={smoothScrollY} />
-      <About user={userData} />
-      <Projects repos={repoData} />
-      <Footer />
+      <Hero />
+      <Certifications certifications={data.certifications} />
+      <Competencies competencies={data.competencies} additionalSkills={data.additionalSkills} />
+      <Projects projects={data.projects} />
+      <About />
+      <Contact contact={data.contact} />
     </main>
   );
 }
