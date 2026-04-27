@@ -224,7 +224,7 @@ function Competencies({ competencies, additionalSkills }: { competencies: Compet
   
   return (
     <section ref={ref} className="py-32 px-6 bg-[#0B1F17]">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -243,12 +243,12 @@ function Competencies({ competencies, additionalSkills }: { competencies: Compet
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group relative p-8 glass rounded-xl border-l-4 border-[#D4AF37]/60 hover:border-[#D4AF37] transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/10"
+              className="group relative p-8 glass rounded-xl border-l-4 border-[#D4AF37]/60 hover:border-[#D4AF37] transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/10 text-center"
               whileHover={{ y: -4 }}
             >
               <h3 className="text-xl font-semibold text-[#E8F5EE] mb-3">{comp.title}</h3>
               <p className="text-[#8AB49A] mb-6 leading-relaxed">{comp.descriptor}</p>
-              <div className="flex flex-wrap gap-2 pt-2">
+              <div className="flex flex-wrap gap-2 pt-2 justify-center">
                 {comp.tags.map(tag => (
                   <span
                     key={tag}
@@ -293,7 +293,7 @@ function ProjectCard({ project, index, featured }: { project: Project; index: nu
       transition={{ duration: 0.6, delay: index * 0.1 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`block relative p-8 rounded-xl glass border border-[#1E4535] hover:border-[#D4AF37]/50 transition-all duration-500 group overflow-hidden ${
+      className={`block relative p-8 rounded-xl glass border border-[#1E4535] hover:border-[#D4AF37]/50 transition-all duration-500 group overflow-hidden text-center ${
         featured ? 'md:col-span-2' : ''
       }`}
       style={{
@@ -310,7 +310,7 @@ function ProjectCard({ project, index, featured }: { project: Project; index: nu
       
       <div className="relative">
         {/* Tags flow normally at top of card - no absolute positioning */}
-        <div className="flex items-center gap-3 mb-4 mt-1 ml-1">
+        <div className="flex items-center gap-3 mb-4 justify-center">
           <span className="px-3 py-1 bg-[#2D6A4F]/40 text-[#95D5B2] text-xs rounded-full font-mono">
             {project.category}
           </span>
@@ -333,7 +333,7 @@ function ProjectCard({ project, index, featured }: { project: Project; index: nu
           {project.summary}
         </p>
         
-        <div className="flex flex-wrap gap-2 mb-6">
+        <div className="flex flex-wrap gap-2 mb-6 justify-center">
           {project.tags.map(tag => (
             <span
               key={tag}
@@ -348,7 +348,7 @@ function ProjectCard({ project, index, featured }: { project: Project; index: nu
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: hovered ? 1 : 0, x: hovered ? 0 : -20 }}
           transition={{ duration: 0.3 }}
-          className="flex items-center gap-2 text-[#D4AF37] font-medium"
+          className="flex items-center gap-2 text-[#D4AF37] font-medium justify-center"
         >
           <span>View Project</span>
           <span className="text-lg">→</span>
@@ -367,7 +367,7 @@ function Projects({ projects }: { projects: Project[] }) {
   
   return (
     <section id="projects" ref={ref} className="py-32 px-6 bg-[#0a1510]">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
