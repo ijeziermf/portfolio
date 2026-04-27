@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
-import { motion, useInView, useScroll, useSpring } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 
 interface Certification {
   name: string;
@@ -99,10 +99,6 @@ function Nav() {
 }
 
 function Hero() {
-  const { scrollY } = useScroll();
-  const y = useSpring(scrollY, { stiffness: 80, damping: 25 });
-  const opacity = useSpring(scrollY, { stiffness: 80, damping: 25 });
-  
   return (
     <section className="min-h-screen flex items-center relative overflow-hidden">
       <div className="absolute inset-0 gradient-mesh" />
@@ -174,9 +170,15 @@ function Hero() {
               className="relative"
             >
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#D4AF37] to-[#2D6A4F] opacity-20 blur-2xl" />
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-3xl border-2 border-[#D4AF37]/40 overflow-hidden bg-[#112D24] backdrop-blur flex items-center justify-center">
-                <div className="text-7xl md:text-8xl font-bold text-[#D4AF37] opacity-80">
-                  II
+              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-3xl border-2 border-[#D4AF37]/40 overflow-hidden bg-[#112D24] backdrop-blur flex flex-col items-center justify-center">
+                <img
+                  src="https://avatars.githubusercontent.com/u/258281403?v=4"
+                  alt="Ifeanyi Ijezie"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F17]/80 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-0 right-0 text-center">
+                  <p className="text-[#D4AF37] font-mono text-xs tracking-widest uppercase">Security Automation</p>
                 </div>
               </div>
             </motion.div>
@@ -184,16 +186,13 @@ function Hero() {
         </div>
       </div>
       
-      <motion.div
-        style={{ opacity: opacity.get() > 0.5 ? 1 : 0 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2"
-      >
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
         <motion.div
           animate={{ scaleY: [0, 1, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           className="w-1 h-12 bg-gradient-to-b from-[#D4AF37] to-transparent rounded-full"
         />
-      </motion.div>
+      </div>
     </section>
   );
 }
@@ -235,7 +234,7 @@ function Certifications({ certifications }: { certifications: Certification[] })
             transition={{ delay: 0.5 }}
             className="text-center mt-6"
           >
-            <p className="text-[#506860] text-sm">
+            <p className="text-[#8AB49A] text-sm font-medium">
               Pursuing: {pursuing.map(c => c.name).join(' | ')}
             </p>
           </motion.div>
@@ -275,11 +274,11 @@ function Competencies({ competencies, additionalSkills }: { competencies: Compet
             >
               <h3 className="text-xl font-semibold text-[#E8F5EE] mb-3">{comp.title}</h3>
               <p className="text-[#8AB49A] mb-6 leading-relaxed">{comp.descriptor}</p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 pt-2">
                 {comp.tags.map(tag => (
                   <span
                     key={tag}
-                    className="px-3 py-1 bg-[#1E4535]/50 text-[#95D5B2] text-xs rounded-full font-mono"
+                    className="px-3 py-1 bg-[#1E4535]/60 text-[#95D5B2] text-xs rounded-full font-mono"
                   >
                     {tag}
                   </span>
@@ -295,7 +294,7 @@ function Competencies({ competencies, additionalSkills }: { competencies: Compet
           transition={{ delay: 0.8 }}
           className="text-center mt-12"
         >
-          <p className="text-[#506860] text-sm">
+          <p className="text-[#8AB49A] text-sm">
             Also experienced in: {additionalSkills}
           </p>
         </motion.div>
@@ -337,11 +336,11 @@ function ProjectCard({ project, index, featured }: { project: Project; index: nu
       
       <div className="relative">
         <div className="flex items-center gap-3 mb-4">
-          <span className="px-3 py-1 bg-[#2D6A4F]/30 text-[#95D5B2] text-xs rounded-full font-mono">
+          <span className="px-3 py-1 bg-[#2D6A4F]/40 text-[#95D5B2] text-xs rounded-full font-mono ml-1 mt-1">
             {project.category}
           </span>
           {featured && (
-            <span className="px-3 py-1 bg-[#D4AF37]/20 text-[#D4AF37] text-xs rounded-full font-mono">
+            <span className="px-3 py-1 bg-[#D4AF37]/20 text-[#D4AF37] text-xs rounded-full font-mono ml-1 mt-1">
               Featured
             </span>
           )}
@@ -363,7 +362,7 @@ function ProjectCard({ project, index, featured }: { project: Project; index: nu
           {project.tags.map(tag => (
             <span
               key={tag}
-              className="px-3 py-1 bg-[#1E4535]/50 text-[#95D5B2] text-xs rounded-full font-mono"
+              className="px-3 py-1 bg-[#1E4535]/60 text-[#95D5B2] text-xs rounded-full font-mono"
             >
               {tag}
             </span>
@@ -465,7 +464,7 @@ function About() {
               Currently pursuing CISM and CISSP certifications.
             </p>
             
-            <div className="flex flex-wrap justify-center gap-8 text-sm text-[#506860]">
+            <div className="flex flex-wrap justify-center gap-8 text-sm text-[#8AB49A]">
               <p>Waldorf, MD | Open to Relocate</p>
               <p>BS, Cum Laude 3.57 GPA | Gannon University</p>
             </div>
