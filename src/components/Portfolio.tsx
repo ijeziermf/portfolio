@@ -143,7 +143,7 @@ function Hero() {
           <div className="lg:col-span-5 xl:col-span-4 flex justify-center lg:justify-end">
             <div className="relative">
               <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-[#D4AF37]/30 to-[#2D6A4F]/30 opacity-40 blur-xl" />
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-3xl border-2 border-[#D4AF37]/40 overflow-hidden bg-[#112D24] flex flex-col items-center justify-center shadow-[0_0_40px_rgba(212,175,55,0.15)] shadow-[0_0_80px_rgba(45,106,79,0.2)]">
+              <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-3xl border-2 border-[#D4AF37]/40 overflow-hidden bg-[#112D24] flex flex-col items-center justify-center shadow-[0_0_40px_rgba(212,175,55,0.15)] shadow-[0_0_80px_rgba(45,106,79,0.2)]">
                 <img
                   src="https://avatars.githubusercontent.com/u/258281403?v=4"
                   alt="Ifeanyi Ijezie"
