@@ -61,7 +61,7 @@ function Nav() {
         scrolled ? 'bg-[#0B1F17]/95 backdrop-blur-xl border-b border-[#2D6A4F]/20' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+      <div className="px-8 lg:px-16 xl:px-24 py-5 flex items-center justify-between">
         <motion.a 
           href="#"
           className="text-xl font-bold text-[#E8F5EE] tracking-tight"
@@ -101,13 +101,11 @@ function Nav() {
 function Hero() {
   return (
     <section className="min-h-screen flex items-center relative">
-      {/* Gradient mesh background - behind content */}
       <div className="absolute inset-0 gradient-mesh z-0" />
       
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-32 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-10 gap-12 items-center">
-          {/* Text content - stacks above image on mobile */}
-          <div className="lg:col-span-6 text-center lg:text-left">
+      <div className="relative z-10 px-8 lg:px-16 xl:px-24 py-32 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-7 xl:col-span-8 text-center lg:text-left">
             <div className="mb-6">
               <p className="text-[#D4AF37] text-sm font-mono tracking-wider uppercase">
                 SECURITY AUTOMATION ENGINEER · GRC · DEVOPS
@@ -142,12 +140,10 @@ function Hero() {
             </div>
           </div>
           
-          {/* Image - stacks below text on mobile, both centered */}
-          <div className="lg:col-span-4 flex justify-center lg:justify-end">
+          <div className="lg:col-span-5 xl:col-span-4 flex justify-center lg:justify-end">
             <div className="relative">
-              {/* Glow effect */}
               <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-[#D4AF37]/30 to-[#2D6A4F]/30 opacity-40 blur-xl" />
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-3xl border-2 border-[#D4AF37]/40 overflow-hidden bg-[#112D24] backdrop-blur flex flex-col items-center justify-center shadow-[0_0_40px_rgba(212,175,55,0.15)] shadow-[0_0_80px_rgba(45,106,79,0.2)]">
+              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-3xl border-2 border-[#D4AF37]/40 overflow-hidden bg-[#112D24] flex flex-col items-center justify-center shadow-[0_0_40px_rgba(212,175,55,0.15)] shadow-[0_0_80px_rgba(45,106,79,0.2)]">
                 <img
                   src="https://avatars.githubusercontent.com/u/258281403?v=4"
                   alt="Ifeanyi Ijezie"
@@ -163,7 +159,6 @@ function Hero() {
         </div>
       </div>
       
-      {/* Scroll indicator - CSS pulse, no Framer Motion */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10">
         <div className="w-1 h-12 bg-gradient-to-b from-[#D4AF37] to-transparent rounded-full animate-pulse" />
       </div>
@@ -179,8 +174,8 @@ function Certifications({ certifications }: { certifications: Certification[] })
   const pursuing = certifications.filter(c => c.status === 'pursuing');
   
   return (
-    <section ref={ref} className="py-20 px-6 bg-[#0a1510]">
-      <div className="max-w-6xl mx-auto text-center">
+    <section ref={ref} className="py-20 px-8 lg:px-16 xl:px-24 bg-[#0a1510]">
+      <div className="text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -223,31 +218,31 @@ function Competencies({ competencies, additionalSkills }: { competencies: Compet
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   
   return (
-    <section ref={ref} className="py-32 px-6 bg-[#0B1F17]">
-      <div className="max-w-6xl mx-auto text-center">
+    <section ref={ref} className="py-32 px-8 lg:px-16 xl:px-24 bg-[#0B1F17]">
+      <div className="text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5EE] mb-4">Expertise</h2>
           <p className="text-[#8AB49A] text-lg">Core competencies and technical skills</p>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {competencies.map((comp, i) => (
             <motion.div
               key={comp.title}
               ref={ref}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group relative p-8 glass rounded-xl border-l-4 border-[#D4AF37]/60 hover:border-[#D4AF37] transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/10 text-center"
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="group p-8 glass rounded-xl border-l-4 border-[#D4AF37]/60 hover:border-[#D4AF37] transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/10 text-center"
               whileHover={{ y: -4 }}
             >
               <h3 className="text-xl font-semibold text-[#E8F5EE] mb-3">{comp.title}</h3>
-              <p className="text-[#8AB49A] mb-6 leading-relaxed">{comp.descriptor}</p>
+              <p className="text-[#8AB49A] mb-6 leading-relaxed text-sm">{comp.descriptor}</p>
               <div className="flex flex-wrap gap-2 pt-2 justify-center">
                 {comp.tags.map(tag => (
                   <span
@@ -266,7 +261,7 @@ function Competencies({ competencies, additionalSkills }: { competencies: Compet
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.8 }}
-          className="text-center mt-12"
+          className="mt-12"
         >
           <p className="text-[#95D5B2] text-sm font-medium">
             Also experienced in: {additionalSkills}
@@ -290,11 +285,11 @@ function ProjectCard({ project, index, featured }: { project: Project; index: nu
       rel="noopener noreferrer"
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
+      transition={{ duration: 0.6, delay: index * 0.08 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className={`block relative p-8 rounded-xl glass border border-[#1E4535] hover:border-[#D4AF37]/50 transition-all duration-500 group overflow-hidden text-center ${
-        featured ? 'md:col-span-2' : ''
+        featured ? 'md:col-span-2 xl:col-span-3' : 'xl:col-span-1'
       }`}
       style={{
         transformStyle: 'preserve-3d',
@@ -309,7 +304,6 @@ function ProjectCard({ project, index, featured }: { project: Project; index: nu
       />
       
       <div className="relative">
-        {/* Tags flow normally at top of card - no absolute positioning */}
         <div className="flex items-center gap-3 mb-4 justify-center">
           <span className="px-3 py-1 bg-[#2D6A4F]/40 text-[#95D5B2] text-xs rounded-full font-mono">
             {project.category}
@@ -366,19 +360,19 @@ function Projects({ projects }: { projects: Project[] }) {
   const regular = projects.filter(p => !p.featured);
   
   return (
-    <section id="projects" ref={ref} className="py-32 px-6 bg-[#0a1510]">
-      <div className="max-w-6xl mx-auto text-center">
+    <section id="projects" ref={ref} className="py-32 px-8 lg:px-16 xl:px-24 bg-[#0a1510]">
+      <div className="text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5EE] mb-4">Selected Work</h2>
           <p className="text-[#8AB49A] text-lg">Cybersecurity, GRC, and AI-driven automation</p>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {featured && <ProjectCard project={featured} index={0} featured />}
           {regular.map((project, i) => (
             <ProjectCard key={project.name} project={project} index={i + 1} />
@@ -394,8 +388,8 @@ function About() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   
   return (
-    <section id="about" ref={ref} className="py-32 px-6 bg-[#0B1F17]">
-      <div className="max-w-4xl mx-auto text-center">
+    <section id="about" ref={ref} className="py-32 px-8 lg:px-16 xl:px-24 bg-[#0B1F17]">
+      <div className="text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -423,7 +417,7 @@ function About() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="max-w-3xl"
+            className="max-w-4xl"
           >
             <h3 className="text-2xl font-semibold text-[#E8F5EE] mb-6">Ifeanyi Ijezie</h3>
             
@@ -462,8 +456,8 @@ function Contact({ contact }: { contact: Contact }) {
   ];
   
   return (
-    <section id="contact" ref={ref} className="py-32 px-6 bg-[#0a1510]">
-      <div className="max-w-4xl mx-auto text-center">
+    <section id="contact" ref={ref} className="py-32 px-8 lg:px-16 xl:px-24 bg-[#0a1510]">
+      <div className="text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -474,7 +468,7 @@ function Contact({ contact }: { contact: Contact }) {
           <p className="text-[#8AB49A] text-lg">Open to cybersecurity, GRC, and DevOps opportunities</p>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
           {links.map((link, i) => (
             <motion.a
               key={link.label}
