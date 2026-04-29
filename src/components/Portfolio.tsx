@@ -426,7 +426,7 @@ function About() {
             </p>
             
             <p className="text-[#8AB49A] text-lg leading-relaxed mb-6">
-              Previously: Intelligence Intern (Gannon University) | Information Security Analyst (Lids)
+              Previously: Intelligence Intern (Gannon University) | Assistant Store Manager (Lids)
             </p>
             
             <p className="text-[#8AB49A] text-lg leading-relaxed mb-8">
