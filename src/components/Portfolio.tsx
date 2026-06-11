@@ -63,6 +63,12 @@ type CertInsight = {
   practicalValue: string;
 };
 
+type ToolInsight = {
+  whyImportant: string;
+  whyTrustMe: string;
+  experienceBackup: string[];
+};
+
 const CERT_INSIGHTS: Record<string, CertInsight> = {
   'CompTIA Security+': {
     focusArea: 'Security operations baseline, threats, architecture, and incident response.',
@@ -136,6 +142,225 @@ const SKILL_INSIGHTS: Record<string, SkillInsight> = {
     industryApplication: 'Enhances threat awareness programs and early warning workflows.',
     businessValue: 'Improves incident prioritization and proactive defensive posture.',
     deliverables: ['Threat intelligence briefs', 'Correlation notes', 'Actionable monitoring recommendations'],
+  },
+};
+
+const TOOL_INSIGHTS: Record<string, ToolInsight> = {
+  Python: {
+    whyImportant: 'Python is the backbone for security automation, risk processing, and repeatable control workflows.',
+    whyTrustMe: 'I use Python to build practical systems that move from idea to operational security outcomes.',
+    experienceBackup: [
+      'Built autonomous local-first agent systems with Python-driven orchestration.',
+      'Engineered auditable automation flows for risk and compliance lifecycle execution.',
+      'Developed security automation pipelines with validation and operational runbooks.',
+    ],
+  },
+  'MCP Integration': {
+    whyImportant: 'MCP integration allows controlled tool use so AI systems can execute security tasks safely and reliably.',
+    whyTrustMe: 'I design agent workflows with strict guardrails, traceability, and bounded actions.',
+    experienceBackup: [
+      'Implemented constrained tool-use patterns in autonomous security projects.',
+      'Applied secure defaults and workflow guardrails in deployment pipelines.',
+      'Delivered orchestration designs that preserve auditability and control intent.',
+    ],
+  },
+  'NIST 800-53': {
+    whyImportant: 'NIST 800-53 provides a structured control baseline for securing systems in regulated environments.',
+    whyTrustMe: 'I have repeatedly mapped controls, assessed gaps, and built remediation paths against this framework.',
+    experienceBackup: [
+      'Executed NIST 800-53 aligned assessments and risk registers.',
+      'Produced remediation planning artifacts tied to control gaps.',
+      'Used NIST structure to improve audit readiness and monitoring workflows.',
+    ],
+  },
+  'SOC 2': {
+    whyImportant: 'SOC 2 matters because customers and stakeholders need evidence that security controls are operating effectively.',
+    whyTrustMe: 'I create readiness workflows that connect policies, ownership, and evidence into audit-defensible execution.',
+    experienceBackup: [
+      'Produced control narratives and evidence structures for SOC 2 readiness.',
+      'Built repeatable templates for ownership and governance operations.',
+      'Delivered remediation planning that supports trust criteria outcomes.',
+    ],
+  },
+  'Entra ID': {
+    whyImportant: 'Identity is the primary security boundary in cloud environments, and Entra ID drives that control plane.',
+    whyTrustMe: 'I have implemented identity governance patterns that enforce least privilege and access accountability.',
+    experienceBackup: [
+      'Implemented Entra ID governance with PIM and RBAC guardrails.',
+      'Applied conditional access patterns to reduce identity risk exposure.',
+      'Operationalized access review practices for ongoing control hygiene.',
+    ],
+  },
+  PIM: {
+    whyImportant: 'Privileged Identity Management reduces standing admin access and lowers blast radius during compromise.',
+    whyTrustMe: 'I use PIM in governance designs that convert privileged access into controlled, time-bound elevation.',
+    experienceBackup: [
+      'Implemented PIM role governance in hands-on cloud security projects.',
+      'Integrated least-privilege practices into access control architecture.',
+      'Supported review and accountability workflows around privileged roles.',
+    ],
+  },
+  RBAC: {
+    whyImportant: 'RBAC enforces least privilege at scale by aligning permissions to business roles and responsibilities.',
+    whyTrustMe: 'I have applied RBAC as a practical risk reduction mechanism, not just a policy statement.',
+    experienceBackup: [
+      'Designed role-based guardrails in Entra ID governance work.',
+      'Mapped access scopes to operational duties for better control clarity.',
+      'Used RBAC patterns in broader identity governance implementations.',
+    ],
+  },
+  CSPM: {
+    whyImportant: 'CSPM continuously detects cloud misconfigurations before they become incidents or audit failures.',
+    whyTrustMe: 'I use CSPM findings to prioritize remediation and improve measurable cloud posture over time.',
+    experienceBackup: [
+      'Applied cloud posture hardening with defensive baselines in Azure.',
+      'Worked through CSPM and secure score improvement activities.',
+      'Translated technical findings into governance-ready remediation priorities.',
+    ],
+  },
+  'Defender for Cloud': {
+    whyImportant: 'Defender for Cloud gives actionable security posture insight across cloud resources and control domains.',
+    whyTrustMe: 'I have used it to drive practical hardening plans and compliance-aligned security improvements.',
+    experienceBackup: [
+      'Executed secure score optimization and posture remediation workflows.',
+      'Mapped cloud security findings to NIST-aligned controls and actions.',
+      'Operationalized defensive baselines supported by telemetry checks.',
+    ],
+  },
+  ServiceNow: {
+    whyImportant: 'ServiceNow is important for turning risk and control work into accountable, trackable operational tasks.',
+    whyTrustMe: 'I connect governance outcomes to workflow execution so remediation is assigned, tracked, and closed.',
+    experienceBackup: [
+      'Built repeatable governance templates that align with operational ownership.',
+      'Structured remediation work into clear lifecycle steps and responsibilities.',
+      'Focused on auditable execution, not one-off compliance activity.',
+    ],
+  },
+  'Power BI': {
+    whyImportant: 'Power BI helps translate security and risk data into decision-ready views for leadership and stakeholders.',
+    whyTrustMe: 'I use data storytelling to make control posture and remediation priorities immediately clear.',
+    experienceBackup: [
+      'Operationalized compliance and security insights for decision-ready reporting.',
+      'Supported risk communication with measurable metrics and trends.',
+      'Connected technical findings to business-level security decisions.',
+    ],
+  },
+  Tableau: {
+    whyImportant: 'Tableau strengthens risk communication by visualizing trends, outliers, and treatment progress.',
+    whyTrustMe: 'I focus on dashboards that explain risk posture and next actions, not vanity metrics.',
+    experienceBackup: [
+      'Produced reporting structures that support governance decisions.',
+      'Used visual analysis patterns to communicate remediation priorities.',
+      'Aligned security metrics with stakeholder outcomes and accountability.',
+    ],
+  },
+  'NIST CSF': {
+    whyImportant: 'NIST CSF provides a business-friendly way to organize security capability across identify, protect, detect, respond, and recover.',
+    whyTrustMe: 'I apply framework thinking to map strategy into concrete controls and operating workflows.',
+    experienceBackup: [
+      'Developed governance templates aligned to structured control models.',
+      'Executed risk and remediation work using recognized framework approaches.',
+      'Used framework language to align technical and business stakeholders.',
+    ],
+  },
+  ITGC: {
+    whyImportant: 'ITGC establishes baseline control reliability across access, change, and operations.',
+    whyTrustMe: 'I integrate ITGC concepts into readiness work so controls are testable and sustainable.',
+    experienceBackup: [
+      'Produced control ownership and evidence structures for readiness efforts.',
+      'Built repeatable governance artifacts for operational consistency.',
+      'Mapped remediation to control weaknesses for practical closure.',
+    ],
+  },
+  OSINT: {
+    whyImportant: 'OSINT improves early threat awareness by surfacing external signals before risk escalates internally.',
+    whyTrustMe: 'I apply OSINT in a structured way that supports monitoring decisions and response prioritization.',
+    experienceBackup: [
+      'Developed threat intelligence competency aligned with action-focused outputs.',
+      'Connected monitoring insights to risk treatment and defensive planning.',
+      'Used correlated findings to improve proactive security posture.',
+    ],
+  },
+  'Risk Register': {
+    whyImportant: 'A risk register is critical for turning scattered issues into prioritized, owned, and trackable decisions.',
+    whyTrustMe: 'I build risk registers as operational tools that drive treatment, not static documents.',
+    experienceBackup: [
+      'Executed risk register development in NIST-aligned assessments.',
+      'Produced treatment recommendations tied to impact and likelihood.',
+      'Used register workflows inside automation-focused advisory projects.',
+    ],
+  },
+  'POA&M': {
+    whyImportant: 'POA&M formalizes remediation by defining owners, timelines, and closure criteria for control gaps.',
+    whyTrustMe: 'I use POA&M discipline to keep remediation measurable and auditable from discovery to closure.',
+    experienceBackup: [
+      'Mapped identified control gaps into structured remediation plans.',
+      'Built governance artifacts that support accountable execution tracking.',
+      'Aligned remediation packages to readiness and continuous monitoring goals.',
+    ],
+  },
+  SSP: {
+    whyImportant: 'The System Security Plan documents how controls are implemented, inherited, and operated in real systems.',
+    whyTrustMe: 'I produce SSP-supporting inputs grounded in actual implementation and governance evidence.',
+    experienceBackup: [
+      'Created control narratives and evidence structures in readiness work.',
+      'Connected policy intent to technical and operational implementation detail.',
+      'Focused documentation on audit-defensible and maintainable control stories.',
+    ],
+  },
+  'Modular Tool-Use': {
+    whyImportant: 'Modular tool-use keeps AI systems composable, testable, and safe by separating capabilities into controlled components.',
+    whyTrustMe: 'I design modular workflows with explicit boundaries to reduce failure propagation and improve verification.',
+    experienceBackup: [
+      'Built local-first agent systems with controlled orchestration patterns.',
+      'Applied guardrails and secure defaults to automation workflows.',
+      'Delivered auditable execution paths across multi-step task pipelines.',
+    ],
+  },
+  'Vision/OCR': {
+    whyImportant: 'Vision/OCR expands automation by extracting usable data from documents, screenshots, and evidence artifacts.',
+    whyTrustMe: 'I apply it where evidence capture and review speed matter in compliance and security operations.',
+    experienceBackup: [
+      'Used automation design patterns for evidence-focused workflow execution.',
+      'Mapped extracted outputs into governance and reporting pipelines.',
+      'Prioritized traceability and validation in data handling steps.',
+    ],
+  },
+  'FIPS 199': {
+    whyImportant: 'FIPS 199 categorization sets system impact levels that drive baseline control rigor and risk decisions.',
+    whyTrustMe: 'I use categorization logic to anchor control selection and remediation priorities in governance work.',
+    experienceBackup: [
+      'Executed framework-aligned risk assessments with structured impact thinking.',
+      'Mapped control effort to risk criticality and system context.',
+      'Produced governance artifacts that reflect defensible prioritization.',
+    ],
+  },
+  'SSP Documentation': {
+    whyImportant: 'Strong SSP documentation proves that controls are actually implemented and operable, not just planned.',
+    whyTrustMe: 'I write documentation that links policy, implementation evidence, and operational accountability.',
+    experienceBackup: [
+      'Produced control narratives and supporting evidence structures.',
+      'Built repeatable documentation templates for governance consistency.',
+      'Aligned documentation outputs to readiness and audit expectations.',
+    ],
+  },
+  'Control Gap Analysis': {
+    whyImportant: 'Control gap analysis identifies exactly where risk exposure exists and where remediation investment should go first.',
+    whyTrustMe: 'I run gap analysis with clear scoring and treatment plans that enable practical execution.',
+    experienceBackup: [
+      'Executed NIST-aligned assessments and identified control deficiencies.',
+      'Produced remediation roadmaps tied to measurable outcomes.',
+      'Converted findings into governance-ready action packages.',
+    ],
+  },
+  'Conditional Access': {
+    whyImportant: 'Conditional Access enforces context-aware access decisions that reduce identity compromise risk.',
+    whyTrustMe: 'I have implemented access governance controls that combine policy, identity context, and least privilege.',
+    experienceBackup: [
+      'Applied Entra ID governance with access control guardrails.',
+      'Integrated identity controls with privileged access strategy.',
+      'Built practical access review and enforcement workflows.',
+    ],
   },
 };
 
@@ -298,6 +523,7 @@ export default function Portfolio({ data }: { data: Data }) {
 
   const activeSkillInsight = activeSkill ? SKILL_INSIGHTS[activeSkill.title] : null;
   const activeCertInsight = activeCert ? CERT_INSIGHTS[activeCert.name] : null;
+  const activeToolInsight = activeInfo ? TOOL_INSIGHTS[activeInfo] : null;
 
   return (
     <main className="portfolio-root">
@@ -712,10 +938,31 @@ export default function Portfolio({ data }: { data: Data }) {
             <button className="modal-close" onClick={() => setActiveInfo(null)}>✕</button>
             <p className="modal-tag">Tool Insight</p>
             <h3>{activeInfo}</h3>
-            <p>
-              {activeInfo} is integrated into my security engineering workflows for defensible outcomes, measurable controls,
-              and repeatable delivery.
-            </p>
+            {activeToolInsight ? (
+              <div className="modal-detail-stack">
+                <div className="detail-block">
+                  <p className="detail-title">Why This Is Important</p>
+                  <p>{activeToolInsight.whyImportant}</p>
+                </div>
+                <div className="detail-block">
+                  <p className="detail-title">Why Trust My Skills</p>
+                  <p>{activeToolInsight.whyTrustMe}</p>
+                </div>
+                <div className="detail-block">
+                  <p className="detail-title">Experience Backup</p>
+                  <ul>
+                    {activeToolInsight.experienceBackup.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <p>
+                {activeInfo} supports measurable, repeatable security delivery, and I apply it through hands-on projects,
+                governance workflows, and defensible implementation patterns.
+              </p>
+            )}
           </article>
         </div>
       )}
