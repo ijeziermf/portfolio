@@ -342,7 +342,7 @@ export default function Portfolio({ data }: { data: Data }) {
         <div className="hero-right">
           <div className="hero-photo-wrap">
             <Image
-              src="/headshot.jpg"
+              src="/portfolio/headshot.jpg"
               alt="Ifeanyi Ijezie"
               fill
               sizes="(max-width: 1080px) 100vw, 50vw"
