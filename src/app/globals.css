@@ -358,6 +358,7 @@ button {
 .about,
 .experience,
 .projects,
+.repo-archive,
 .skills,
 .certifications,
 .contact {
@@ -711,6 +712,66 @@ button {
   border-bottom: 1px solid var(--line);
 }
 
+.repo-archive {
+  background: #0d1612;
+  border-bottom: 1px solid var(--line);
+}
+
+.archive-copy {
+  max-width: 760px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.repo-card {
+  border: 1px solid var(--line);
+  background: rgba(19, 31, 25, 0.95);
+  padding: 20px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.repo-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--signal);
+}
+
+.repo-name {
+  font-size: 0.94rem;
+  color: var(--signal);
+  font-family: var(--font-mono);
+  margin-bottom: 8px;
+}
+
+.repo-desc {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.repo-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.repo-meta span {
+  border: 1px solid var(--line-bright);
+  color: var(--accent);
+  padding: 4px 8px;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -969,6 +1030,48 @@ button {
   gap: 8px;
 }
 
+.modal-detail-stack {
+  margin-top: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.detail-block {
+  border: 1px solid var(--line);
+  background: rgba(8, 13, 11, 0.45);
+  padding: 12px 14px;
+}
+
+.detail-title {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.56rem;
+  color: var(--signal);
+  margin-bottom: 6px;
+}
+
+.detail-block ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.detail-block li {
+  position: relative;
+  color: var(--muted);
+  padding-left: 14px;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.detail-block li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--signal);
+}
+
 .modal-tags span {
   border: 1px solid var(--line-bright);
   color: var(--accent);
@@ -1052,6 +1155,10 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .repo-grid {
+    grid-template-columns: 1fr;
+  }
+
   .skills-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -1064,6 +1171,7 @@ button {
   .about,
   .experience,
   .projects,
+  .repo-archive,
   .skills,
   .certifications,
   .contact,

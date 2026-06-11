@@ -39,6 +39,106 @@ interface Data {
   projects: Project[];
 }
 
+interface GitHubRepo {
+  id: number;
+  name: string;
+  description: string | null;
+  html_url: string;
+  homepage: string | null;
+  updated_at: string;
+  stargazers_count: number;
+  language: string | null;
+  topics?: string[];
+}
+
+type SkillInsight = {
+  industryApplication: string;
+  businessValue: string;
+  deliverables: string[];
+};
+
+type CertInsight = {
+  focusArea: string;
+  industryApplication: string;
+  practicalValue: string;
+};
+
+const CERT_INSIGHTS: Record<string, CertInsight> = {
+  'CompTIA Security+': {
+    focusArea: 'Security operations baseline, threats, architecture, and incident response.',
+    industryApplication: 'Used to validate hands-on defensive security capability for analyst and engineering-track roles.',
+    practicalValue: 'Supports SOC workflows, secure implementation decisions, and control-minded risk discussions.',
+  },
+  'Microsoft SC-900': {
+    focusArea: 'Microsoft security, compliance, and identity fundamentals across cloud workloads.',
+    industryApplication: 'Directly applies to Entra ID governance, Defender tooling, and M365 security architecture.',
+    practicalValue: 'Improves cloud-control design and strengthens security conversations with Azure-first teams.',
+  },
+  'Lean Six Sigma Yellow Belt': {
+    focusArea: 'Process improvement, waste reduction, and measurable operational outcomes.',
+    industryApplication: 'Useful in compliance automation and repeatable control execution programs.',
+    practicalValue: 'Helps turn ad hoc security tasks into stable, efficient workflows with clear KPIs.',
+  },
+  'Professional Communication': {
+    focusArea: 'Executive-ready communication and stakeholder-facing clarity.',
+    industryApplication: 'Critical for policy rollout, audit communication, and risk narrative development.',
+    practicalValue: 'Bridges technical findings with business decisions for leadership and non-technical stakeholders.',
+  },
+  CISM: {
+    focusArea: 'Security governance, program management, and enterprise risk leadership.',
+    industryApplication: 'Aligns with GRC leadership roles and organization-wide control strategy.',
+    practicalValue: 'Strengthens governance design, risk ownership models, and board-level security reporting.',
+  },
+  CISSP: {
+    focusArea: 'Broad-domain security architecture, engineering, and management practices.',
+    industryApplication: 'Supports senior security engineering and architect responsibilities across domains.',
+    practicalValue: 'Elevates end-to-end decision making for secure system design and enterprise defense maturity.',
+  },
+};
+
+const SKILL_INSIGHTS: Record<string, SkillInsight> = {
+  'Autonomous Agent Architecture': {
+    industryApplication: 'Applied to secure AI operations, orchestration controls, and controlled tool-use in production-like environments.',
+    businessValue: 'Reduces analyst toil while preserving traceability and policy guardrails.',
+    deliverables: ['Agent policy boundaries', 'Execution logs and audit trails', 'Task orchestration blueprints'],
+  },
+  'NIST SP 800-53 / RMF (Steps 1-6)': {
+    industryApplication: 'Core to regulated environments requiring formal control mapping, authorization workflows, and continuous monitoring.',
+    businessValue: 'Improves audit readiness and enables risk-based investment decisions.',
+    deliverables: ['System Security Plan inputs', 'POA&M artifacts', 'Control gap and remediation roadmap'],
+  },
+  'Identity & Access Governance': {
+    industryApplication: 'Supports zero trust and least-privilege programs in cloud and hybrid enterprises.',
+    businessValue: 'Reduces privileged access risk and improves access accountability.',
+    deliverables: ['PIM role models', 'Access review workflows', 'Conditional access control design'],
+  },
+  'Risk Assessment & Compliance Automation': {
+    industryApplication: 'Used in internal audit, advisory, and security operations for repeatable risk lifecycle execution.',
+    businessValue: 'Accelerates assessment cycles and improves evidence quality for governance stakeholders.',
+    deliverables: ['Risk registers and heat maps', 'Treatment plans', 'Automated evidence collection flows'],
+  },
+  'Cloud Security Posture Management': {
+    industryApplication: 'Applied to Azure environments to continuously evaluate cloud misconfigurations and policy drift.',
+    businessValue: 'Improves remediation speed and strengthens cloud compliance posture.',
+    deliverables: ['Secure Score optimization plans', 'CSPM findings triage', 'Hardening baselines'],
+  },
+  'Security Automation Engineering': {
+    industryApplication: 'Transforms manual security and compliance tasks into deterministic workflows.',
+    businessValue: 'Improves consistency, lowers operational cost, and increases control reliability.',
+    deliverables: ['Automation pipelines', 'Validation test harnesses', 'Operational runbooks'],
+  },
+  'SOC 2 Readiness & ITGC': {
+    industryApplication: 'Key for SaaS organizations preparing for or maintaining SOC 2 attestation.',
+    businessValue: 'Shortens readiness timelines and clarifies control ownership.',
+    deliverables: ['Control ownership matrix', 'Gap analysis reports', 'Remediation planning package'],
+  },
+  'OSINT & Threat Intelligence': {
+    industryApplication: 'Enhances threat awareness programs and early warning workflows.',
+    businessValue: 'Improves incident prioritization and proactive defensive posture.',
+    deliverables: ['Threat intelligence briefs', 'Correlation notes', 'Actionable monitoring recommendations'],
+  },
+};
+
 const EXPERIENCE = [
   {
     date: 'May 2024 — Present',
@@ -118,6 +218,38 @@ export default function Portfolio({ data }: { data: Data }) {
   const [activeSkill, setActiveSkill] = useState<Competency | null>(null);
   const [activeCert, setActiveCert] = useState<Certification | null>(null);
   const [activeInfo, setActiveInfo] = useState<string | null>(null);
+  const [githubRepos, setGithubRepos] = useState<GitHubRepo[]>([]);
+
+  useEffect(() => {
+    const githubProfile = data.contact.github.replace(/\/$/, '');
+    const username = githubProfile.split('/').pop();
+    if (!username) {
+      return;
+    }
+
+    const controller = new AbortController();
+
+    const loadRepos = async () => {
+      try {
+        const response = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`, {
+          signal: controller.signal,
+        });
+        if (!response.ok) {
+          return;
+        }
+
+        const repos = (await response.json()) as GitHubRepo[];
+        const filtered = repos.filter((repo) => repo.name.toLowerCase() !== username.toLowerCase());
+        setGithubRepos(filtered);
+      } catch {
+        setGithubRepos([]);
+      }
+    };
+
+    loadRepos();
+
+    return () => controller.abort();
+  }, [data.contact.github]);
 
   const tools = useMemo(() => {
     const seeded = [
@@ -164,6 +296,9 @@ export default function Portfolio({ data }: { data: Data }) {
     { value: '70%+', label: 'Automation Lift' },
   ];
 
+  const activeSkillInsight = activeSkill ? SKILL_INSIGHTS[activeSkill.title] : null;
+  const activeCertInsight = activeCert ? CERT_INSIGHTS[activeCert.name] : null;
+
   return (
     <main className="portfolio-root">
       <div className="grain-overlay" />
@@ -180,6 +315,7 @@ export default function Portfolio({ data }: { data: Data }) {
           <a href="#about">About</a>
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
+          <a href="#github">GitHub</a>
           <a href="#skills">Skills</a>
           <a href="#certifications">Certs</a>
           <a href="#contact">Contact</a>
@@ -416,6 +552,28 @@ export default function Portfolio({ data }: { data: Data }) {
         </div>
       </section>
 
+      <section className="repo-archive" id="github">
+        <p className="section-kicker">GitHub</p>
+        <h2>Full Repository Archive.</h2>
+        <p className="archive-copy">
+          Live sync of public repositories so the portfolio reflects current GitHub work, including newest projects as they ship.
+        </p>
+
+        <div className="repo-grid">
+          {githubRepos.map((repo) => (
+            <a key={repo.id} className="repo-card" href={repo.html_url} target="_blank" rel="noopener noreferrer">
+              <p className="repo-name">{repo.name}</p>
+              <p className="repo-desc">{repo.description ?? 'Security, GRC, or automation-focused repository in active portfolio rotation.'}</p>
+              <div className="repo-meta">
+                <span>{repo.language ?? 'Multi-stack'}</span>
+                <span>{new Date(repo.updated_at).toLocaleDateString()}</span>
+                <span>★ {repo.stargazers_count}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
       <section className="skills" id="skills">
         <p className="section-kicker">Technical Skills</p>
         <h2>Controls, Cloud, and Automation Expertise.</h2>
@@ -484,6 +642,26 @@ export default function Portfolio({ data }: { data: Data }) {
             <p className="modal-tag">Skill Breakdown</p>
             <h3>{activeSkill.title}</h3>
             <p>{activeSkill.descriptor}</p>
+            {activeSkillInsight ? (
+              <div className="modal-detail-stack">
+                <div className="detail-block">
+                  <p className="detail-title">Industry Application</p>
+                  <p>{activeSkillInsight.industryApplication}</p>
+                </div>
+                <div className="detail-block">
+                  <p className="detail-title">Business Value</p>
+                  <p>{activeSkillInsight.businessValue}</p>
+                </div>
+                <div className="detail-block">
+                  <p className="detail-title">Typical Deliverables</p>
+                  <ul>
+                    {activeSkillInsight.deliverables.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ) : null}
             <div className="modal-tags">
               {activeSkill.tags.map((tag) => (
                 <span key={tag}>{tag}</span>
@@ -504,6 +682,22 @@ export default function Portfolio({ data }: { data: Data }) {
                 ? 'Earned credential demonstrating verified capability in this domain.'
                 : 'Active certification track currently in progress.'}
             </p>
+            {activeCertInsight ? (
+              <div className="modal-detail-stack">
+                <div className="detail-block">
+                  <p className="detail-title">Focus Area</p>
+                  <p>{activeCertInsight.focusArea}</p>
+                </div>
+                <div className="detail-block">
+                  <p className="detail-title">Industry Application</p>
+                  <p>{activeCertInsight.industryApplication}</p>
+                </div>
+                <div className="detail-block">
+                  <p className="detail-title">Practical Value</p>
+                  <p>{activeCertInsight.practicalValue}</p>
+                </div>
+              </div>
+            ) : null}
             <div className="modal-tags">
               <span>{activeCert.status === 'earned' ? 'Earned' : 'Pursuing'}</span>
               {activeCert.issuer ? <span>{activeCert.issuer}</span> : null}

@@ -58,17 +58,25 @@
   },
   "projects": [
     {
+      "name": "Ijezie Risk Advisory Suite",
+      "category": "AI · GRC · Risk Advisory",
+      "summary": "Modular Python-first GRC operating suite with FastAPI backend and Next.js frontend. Delivers risk register workflows, control mapping, evidence handling, and release-gated validation for advisory-grade execution.",
+      "tags": ["FastAPI", "Next.js", "GRC Platform", "Risk Register", "Control Mapping", "AI-Enabled Workflows"],
+      "url": "https://github.com/ijeziermf/ijezie-risk-advisory-suite",
+      "featured": true
+    },
+    {
       "name": "UgoAI",
-      "category": "AI \u00b7 GRC \u00b7 DevOps",
-      "summary": "Fully local autonomous AI agent that thinks, plans, and controls systems. No API keys, no cloud dependency. Security-first architecture with agentic workflow orchestration and real DevOps automation. The project that ties it all together.",
+      "category": "AI · GRC · DevOps",
+      "summary": "Fully local autonomous AI agent that thinks, plans, and controls systems. No API keys, no cloud dependency. Security-first architecture with agentic workflow orchestration and real DevOps automation.",
       "tags": ["AI Agent", "Agentic Workflows", "Local LLM", "Security-First", "DevOps Automation"],
       "url": "https://github.com/ijeziermf/UgoAI",
-      "featured": true
+      "featured": false
     },
     {
       "name": "AtlasPay Risk Assessment",
       "category": "GRC",
-      "summary": "End-to-end NIST 800-53 risk assessment for a FinTech payment processor. Quantitative scoring, risk register, heat map, and executive treatment recommendations for SOC 2 readiness.",
+      "summary": "End-to-end NIST 800-53 risk assessment for FinTech payment processor. Quantitative scoring, risk register, heat map, and executive treatment recommendations for SOC 2 readiness.",
       "tags": ["NIST 800-53", "Risk Assessment", "SOC 2", "GRC"],
       "url": "https://github.com/ijeziermf/AtlasPay-Risk-Assessment",
       "featured": false
@@ -84,7 +92,7 @@
     {
       "name": "AtlasPay Risk Profile & BCP",
       "category": "GRC",
-      "summary": "Business Continuity Plan and organizational risk profile for simulated AtlasPay environment. Critical process analysis, recovery priorities, and resilience strategies.",
+      "summary": "Business Continuity Plan and organizational risk profile. Critical process analysis, recovery priorities, and resilience strategies aligned with NIST 800-34.",
       "tags": ["BCP", "Risk Profile", "NIST 800-34", "Resilience"],
       "url": "https://github.com/ijeziermf/AtlasPay-Risk-Profile-BCP",
       "featured": false
@@ -92,7 +100,7 @@
     {
       "name": "Cyber Security Policy Library",
       "category": "GRC",
-      "summary": "NIST-aligned cybersecurity policy templates covering access control, incident response, third-party risk, and security awareness. Designed for governance and practical adoption.",
+      "summary": "NIST-aligned cybersecurity policy templates covering access control, incident response, third-party risk, and security awareness. Governance-ready and audit-defensible.",
       "tags": ["Security Policy", "NIST", "Access Control", "Incident Response"],
       "url": "https://github.com/ijeziermf/Cyber-Security-Policy-Library",
       "featured": false
@@ -100,9 +108,25 @@
     {
       "name": "Identity Governance (PIM/RBAC)",
       "category": "Cloud Security",
-      "summary": "Identity and access governance implementation with Azure PIM, RBAC, and access reviews. Privileged identity management for enterprise security.",
-      "tags": ["Azure", "PIM", "RBAC", "Identity Governance"],
+      "summary": "Entra ID governance implementation with PIM, RBAC, Conditional Access, and access reviews. Least-privilege enforcement for enterprise security.",
+      "tags": ["Azure", "Entra ID", "PIM", "RBAC", "Identity Governance"],
       "url": "https://github.com/ijeziermf/Identity-Governance-PIM-RBAC-access-reviews-",
+      "featured": false
+    },
+    {
+      "name": "Microsoft Defender for Cloud (CSPM)",
+      "category": "Cloud Security",
+      "summary": "Cloud Security Posture Management with Secure Score optimization, NIST compliance mapping, and remediation planning for Azure environments.",
+      "tags": ["CSPM", "Defender for Cloud", "Secure Score", "NIST", "Azure"],
+      "url": "https://github.com/ijeziermf/Microsoft-Defender-for-Cloud-CSPM-Secure-Score",
+      "featured": false
+    },
+    {
+      "name": "Linux Hardening in Azure",
+      "category": "Cloud Security",
+      "summary": "NIST 800-53 aligned Linux VM hardening for FinTech workloads. SSH security, least privilege, audit logging, and firewall configuration.",
+      "tags": ["Linux", "Hardening", "NIST 800-53", "Azure", "Compliance"],
+      "url": "https://github.com/ijeziermf/Linux-Hardening-in-MS-Azure",
       "featured": false
     }
   ]
